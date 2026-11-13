@@ -120,8 +120,14 @@ async function initProfile() {
                 showFormMessage('profile-message', 'Please enter a valid email address.', 'error');
                 return;
             }
-            if (newPhone && !isValidMobile(newPhone)) {
+            if (!newPhone) {
+                showFormMessage('profile-message', 'Please enter a phone number.', 'error');
+                phoneEl?.focus();
+                return;
+            }
+            if (!isValidMobile(newPhone)) {
                 showFormMessage('profile-message', 'Phone must be between 10 and 12 digits.', 'error');
+                phoneEl?.focus();
                 return;
             }
             if (!newPassword.trim()) {

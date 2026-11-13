@@ -22,7 +22,7 @@
 
             <form class="create-event__card" id="create-event-form" novalidate>
                 <div class="field">
-                    <label class="field__label" for="event-name">Event Name</label>
+                    <label class="field__label" for="event-name">Event Name<span class="required" aria-hidden="true">*</span></label>
                     <input class="input" id="event-name" type="text" placeholder="Enter Name">
                     <span class="form-error is-hidden" id="error-event-name"></span>
                 </div>
@@ -35,7 +35,7 @@
 
                 <div class="create-event__grid">
                     <div class="field">
-                        <label class="field__label" for="event-start-date">Event Start Date</label>
+                        <label class="field__label" for="event-start-date">Event Start Date<span class="required" aria-hidden="true">*</span></label>
                         <span class="field-input field-input--picker">
                             <input class="input" id="event-start-date" type="date">
                             <span class="field-input__icon">
@@ -45,7 +45,7 @@
                         <span class="form-error is-hidden" id="error-event-start-date"></span>
                     </div>
                     <div class="field">
-                        <label class="field__label" for="event-end-date">Event End Date</label>
+                        <label class="field__label" for="event-end-date">Event End Date<span class="required" aria-hidden="true">*</span></label>
                         <span class="field-input field-input--picker">
                             <input class="input" id="event-end-date" type="date">
                             <span class="field-input__icon">
@@ -56,7 +56,7 @@
                     </div>
 
                     <div class="field">
-                        <label class="field__label" for="booking-start-date">Booking Start Date</label>
+                        <label class="field__label" for="booking-start-date">Booking Start Date<span class="required" aria-hidden="true">*</span></label>
                         <span class="field-input field-input--picker">
                             <input class="input" id="booking-start-date" type="date">
                             <span class="field-input__icon">
@@ -66,7 +66,7 @@
                         <span class="form-error is-hidden" id="error-booking-start-date"></span>
                     </div>
                     <div class="field">
-                        <label class="field__label" for="booking-end-date">Booking End Date</label>
+                        <label class="field__label" for="booking-end-date">Booking End Date<span class="required" aria-hidden="true">*</span></label>
                         <span class="field-input field-input--picker">
                             <input class="input" id="booking-end-date" type="date">
                             <span class="field-input__icon">
@@ -79,7 +79,7 @@
                     </div>
 
                     <div class="field">
-                        <label class="field__label" for="event-start-time">Event Start Time</label>
+                        <label class="field__label" for="event-start-time">Event Start Time<span class="required" aria-hidden="true">*</span></label>
                         <span class="field-input field-input--picker">
                             <input class="input" id="event-start-time" type="time">
                             <span class="field-input__icon">
@@ -90,7 +90,7 @@
                         <span class="form-error is-hidden" id="error-event-start-time"></span>
                     </div>
                     <div class="field">
-                        <label class="field__label" for="event-end-time">Event End Time</label>
+                        <label class="field__label" for="event-end-time">Event End Time<span class="required" aria-hidden="true">*</span></label>
                         <span class="field-input field-input--picker">
                             <input class="input" id="event-end-time" type="time">
                             <span class="field-input__icon">
@@ -102,18 +102,18 @@
                     </div>
 
                     <div class="field">
-                        <label class="field__label" for="event-price">Price</label>
+                        <label class="field__label" for="event-price">Price<span class="required" aria-hidden="true">*</span></label>
                         <input class="input" id="event-price" type="number" min="1" step="1" placeholder="Enter Price">
                         <span class="form-error is-hidden" id="error-event-price"></span>
                     </div>
                     <div class="field">
-                        <label class="field__label" for="event-capacity">Capacity</label>
+                        <label class="field__label" for="event-capacity">Capacity<span class="required" aria-hidden="true">*</span></label>
                         <input class="input" id="event-capacity" type="number" min="1" step="1" placeholder="EX. 1000">
                         <span class="form-error is-hidden" id="error-event-capacity"></span>
                     </div>
 
                     <div class="field">
-                        <label class="field__label" for="event-location">Add Location</label>
+                        <label class="field__label" for="event-location">Add Location<span class="required" aria-hidden="true">*</span></label>
                         <span class="field-input">
                             <input class="input" id="event-location" type="text" placeholder="Search Location">
                             <span class="field-input__icon">

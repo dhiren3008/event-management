@@ -192,7 +192,11 @@ document.querySelectorAll('[data-save]').forEach((button) => {
                 return;
             }
         }
-        if (fieldExists('phone') && phone) {
+        if (fieldExists('phone')) {
+            if (!phone) {
+                showFormMessage('user-form-message', 'Please enter a phone number.');
+                return;
+            }
             if (!isValidMobile(phone)) {
                 showFormMessage('user-form-message', 'Phone must be between 10 and 12 digits.');
                 return;

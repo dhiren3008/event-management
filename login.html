@@ -35,14 +35,14 @@
                     <p id="email-form-message" class="form-message form-message--error is-hidden" role="alert"></p>
                     
                     <div class="form-group">
-                        <label for="email" class="form-label">Mail ID</label>
+                        <label for="email" class="form-label">Mail ID<span class="required" aria-hidden="true">*</span></label>
                         <input type="email" id="email" name="email" class="input"
                         placeholder="typeyourmailid@gmail.com" autocomplete="email">
                         <p id="email-error" class="form-error is-hidden"></p>
                     </div>
                     
                     <div class="form-group">
-                        <label for="password" class="form-label">Password</label>
+                        <label for="password" class="form-label">Password<span class="required" aria-hidden="true">*</span></label>
                         <div class="input-wrapper">
                             <input type="password" id="password" name="password" class="input" placeholder="Enter password" maxlength="10" autocomplete="current-password">
                             <button type="button" id="toggle-password" class="input-wrapper__toggle" aria-label="Show password" aria-pressed="false">
@@ -68,7 +68,7 @@
                     role="alert"></p>
                     
                     <div class="form-group">
-                        <label for="mobile" class="form-label">Mobile Number</label>
+                        <label for="mobile" class="form-label">Mobile Number<span class="required" aria-hidden="true">*</span></label>
                         <div class="input-wrapper">
                             <span class="input-wrapper__prefix">+91</span>
                             <input type="tel" id="mobile" name="mobile" class="input input--prefixed" placeholder="Enter mobile number" inputmode="numeric" minlength="10" maxlength="12" pattern="[0-9]{10,12}" autocomplete="tel-national">
