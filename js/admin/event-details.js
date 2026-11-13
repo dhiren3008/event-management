@@ -72,7 +72,6 @@ function fillEvent(event) {
     setText('detail-price', isEmpty(event.price) ? '' : formatCurrency(event.price));
     setText('detail-capacity', isEmpty(event.capacity) ? '' : formatNumber(event.capacity));
     setText('detail-location', event.location);
-    setText('detail-pin', event.pinLevel);
 }
 
 function range(from, to, separator) {

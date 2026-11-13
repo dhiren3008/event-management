@@ -105,16 +105,10 @@ async function init() {
             upcomingEvents = activeEvents;
         }
 
-        // 3. Recommended events: matches member's pinLevel, or secondary pool
-        let recommendedEvents = activeEvents.filter((ev) => {
-            if (user.pinLevel && ev.pinLevel) {
-                return ev.pinLevel.toLowerCase() === user.pinLevel.toLowerCase();
-            }
-            return true;
-        });
-
+        // 3. Recommended events pool
+        let recommendedEvents = activeEvents.slice(2, 6);
         if (recommendedEvents.length === 0) {
-            recommendedEvents = activeEvents.slice(2, 6);
+            recommendedEvents = activeEvents;
         }
 
         // Initial render

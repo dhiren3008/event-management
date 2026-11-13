@@ -79,7 +79,6 @@ function openUserDetails(user) {
             ['Email', user.email],
             ['Mobile', user.mobile || '\u2014'],
             ['Role', user.role],
-            ['PIN Level', user.pinLevel || '\u2014'],
             ['Registered', formatDate(user.createdAt)],
         ])
     );
@@ -144,7 +143,6 @@ function buildAssignRow(row) {
         createEl('td', 'assign-table__id', displayId),
         createEl('td', 'assign-table__name', row.user.name),
         createEl('td', '', row.user.location || '\u2014'),
-        createEl('td', '', row.user.pinLevel || '\u2014'),
         statusCell,
         detailsCell
     );
@@ -273,7 +271,7 @@ document.getElementById('assign-search').addEventListener('input', (event) => {
     assignRows.forEach((row) => {
         if (!row.tr) return;
         const displayId = row.user.displayId || `#${row.user.id}`;
-        const haystack = `${displayId} ${row.user.id} ${row.user.name} ${row.user.location || ''} ${row.user.pinLevel || ''}`.toLowerCase();
+        const haystack = `${displayId} ${row.user.id} ${row.user.name} ${row.user.location || ''}`.toLowerCase();
         row.tr.hidden = query !== '' && !haystack.includes(query) && !haystack.includes(raw);
     });
     updateAssignAllCheckbox();

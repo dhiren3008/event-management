@@ -105,11 +105,6 @@ async function init() {
 
         document.getElementById('event-price').textContent = event.price ? `₹${event.price}` : 'Free';
         document.getElementById('event-description').textContent = event.description || 'No description provided.';
-        
-        document.getElementById('event-qualification').textContent = event.pinLevel 
-            ? `Open to ${event.pinLevel} and above` 
-            : 'Open to all members';
-
         document.getElementById('event-datetime').textContent = formatEventDateTime(event);
         document.getElementById('event-seats-left').textContent = `${seatsLeft} Seats are Left`;
 

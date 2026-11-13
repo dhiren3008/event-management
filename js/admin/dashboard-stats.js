@@ -36,7 +36,7 @@ function renderUpdates(events) {
         const timeString = ev.startTime ? formatTime(ev.startTime) : '10:00 AM';
 
         return `
-            <article class="update-item${activeClass}" style="cursor: pointer;" data-event-id="${ev.id || ''}">
+            <article class="update-item${activeClass}">
                 <div class="update-item__top">
                     <h4 class="update-item__title">${ev.name || 'Untitled Event'}</h4>
                     <a href="/pages/admin/event-details.html?id=${encodeURIComponent(ev.id || '')}" class="btn-detail-pill ${btnClass}">View Details</a>
@@ -56,16 +56,6 @@ function renderUpdates(events) {
             </article>
         `;
     }).join('');
-
-    container.querySelectorAll('.update-item').forEach((item) => {
-        item.addEventListener('click', (e) => {
-            if (e.target.closest('a')) return;
-            const eventId = item.getAttribute('data-event-id');
-            if (eventId) {
-                window.location.href = `/pages/admin/event-details.html?id=${encodeURIComponent(eventId)}`;
-            }
-        });
-    });
 }
 
 // ===== Hero: Next Upcoming Event =====

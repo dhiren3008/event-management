@@ -13,10 +13,6 @@
     <link rel="stylesheet" href="/css/admin/profile.css">
 </head>
 <body>
-    <!-- Design-only page: the form never submits anywhere. js/admin/profile.js
-         only guards the page and renders the shell; Save Updates just opens
-         the "nothing was saved" popup. data-active-key="profile" matches no
-         menu entry, so no sidebar item is highlighted (per the screenshot). -->
     <div id="app" data-active-key="profile">
         <div class="user-form profile-page">
             <h1 class="page-heading">Profile Details</h1>
@@ -39,7 +35,7 @@
                     </div>
                     <div class="field">
                         <label class="field__label" for="admin-id">Admin ID</label>
-                        <input class="input" id="admin-id" type="text">
+                        <input class="input" id="admin-id" type="text" readonly>
                     </div>
 
                     <div class="field">
@@ -49,6 +45,23 @@
                     <div class="field">
                         <label class="field__label" for="phone">Phone number</label>
                         <input class="input" id="phone" type="tel" inputmode="numeric" minlength="10" maxlength="12" pattern="[0-9]{10,12}" placeholder="Enter Phone Number">
+                    </div>
+
+                    <div class="field">
+                        <label class="field__label" for="password">Password</label>
+                        <div class="input-wrapper">
+                            <input class="input" id="password" type="password" placeholder="Enter password" maxlength="10" autocomplete="current-password">
+                            <button type="button" id="toggle-password" class="input-wrapper__toggle" aria-label="Show password" aria-pressed="false">
+                                <svg id="icon-eye" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                                    <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z" />
+                                    <circle cx="12" cy="12" r="3" />
+                                </svg>
+                                <svg id="icon-eye-off" class="is-hidden" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                                    <path d="M17.94 17.94A10.07 10.07 0 0 1 12 20c-7 0-11-8-11-8a18.45 18.45 0 0 1 5.06-5.94M9.9 4.24A9.12 9.12 0 0 1 12 4c7 0 11 8 11 8a18.5 18.5 0 0 1-2.16 3.19m-6.72-1.07a3 3 0 1 1-4.24-4.24" />
+                                    <line x1="1" y1="1" x2="23" y2="23" />
+                                </svg>
+                            </button>
+                        </div>
                     </div>
                 </div>
 

@@ -188,7 +188,6 @@ function openSummaryModal(modal, event, user, formData, pricing) {
     document.getElementById('modal-venue').textContent = `: ${event.location || 'Trade Centre'}`;
     document.getElementById('modal-ticket-type').textContent = `: ${formData.ticketType}`;
     document.getElementById('modal-sponsor').textContent = `: ${user.systemIncharge || 'Test Sponsor'}`;
-    document.getElementById('modal-pin-level').textContent = `: ${user.pinLevel || 'NA'}`;
     document.getElementById('modal-tab-team').textContent = `: ${user.tabTeamName || 'NA'}`;
     document.getElementById('modal-system-incharge').textContent = `: ${user.systemIncharge || 'NA'}`;
     document.getElementById('modal-user-meal').textContent = `: ${formData.userMeal}`;

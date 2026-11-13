@@ -2,7 +2,7 @@ import { requireRole, saveUser } from '../core/auth.js';
 import { updateUser, getUserById, getUsers } from '../core/api.js';
 import { renderLayout } from '../core/layout.js';
 import { bindOverlayClose, openOverlay, showFormMessage, clearFormMessage } from '../core/dom.js';
-import { isValidEmail, isValidMobile } from '../core/utils.js';
+import { isValidEmail, isValidMobile, isValidPassword } from '../core/utils.js';
 
 // Profile page — admin editing their own account.
 // Intentionally does NOT import user-form.js to avoid the double [data-save]
@@ -57,11 +57,30 @@ async function initProfile() {
     const adminIdEl  = document.getElementById('admin-id');
     const emailEl    = document.getElementById('email');
     const phoneEl    = document.getElementById('phone');
+    const passwordEl = document.getElementById('password');
+    const togglePasswordBtn = document.getElementById('toggle-password');
+    const iconEye = document.getElementById('icon-eye');
+    const iconEyeOff = document.getElementById('icon-eye-off');
 
     if (userNameEl) userNameEl.value = activeData.name        || '';
-    if (adminIdEl)  adminIdEl.value  = activeData.displayId   || `#${activeData.id}`;
+    if (adminIdEl) {
+        adminIdEl.value = activeData.displayId || `#${activeData.id}`;
+        adminIdEl.readOnly = true;
+    }
     if (emailEl)    emailEl.value    = activeData.email        || '';
     if (phoneEl)    phoneEl.value    = activeData.mobile       || '';
+    if (passwordEl) passwordEl.value = activeData.password     || '';
+
+    if (togglePasswordBtn && passwordEl) {
+        togglePasswordBtn.addEventListener('click', () => {
+            const isHidden = passwordEl.type === 'password';
+            passwordEl.type = isHidden ? 'text' : 'password';
+            togglePasswordBtn.setAttribute('aria-label', isHidden ? 'Hide password' : 'Show password');
+            togglePasswordBtn.setAttribute('aria-pressed', String(isHidden));
+            if (iconEye) iconEye.classList.toggle('is-hidden', isHidden);
+            if (iconEyeOff) iconEyeOff.classList.toggle('is-hidden', !isHidden);
+        });
+    }
 
     // Cancel / Back button
     const cancelBtn = document.querySelector('[data-cancel]');
@@ -90,9 +109,9 @@ async function initProfile() {
             const newName      = userNameEl?.value?.trim() || '';
             const newEmail     = emailEl?.value?.trim()    || '';
             const newPhone     = phoneEl?.value?.trim()    || '';
-            const newDisplayId = adminIdEl?.value?.trim()  || activeData.displayId;
+            const newPassword  = passwordEl?.value         || '';
 
-            // Name, email and mobile validation
+            // Name, email, mobile and password validation
             if (!newName) {
                 showFormMessage('profile-message', 'Please enter a user name.', 'error');
                 return;
@@ -103,6 +122,14 @@ async function initProfile() {
             }
             if (newPhone && !isValidMobile(newPhone)) {
                 showFormMessage('profile-message', 'Phone must be between 10 and 12 digits.', 'error');
+                return;
+            }
+            if (!newPassword.trim()) {
+                showFormMessage('profile-message', 'Please enter a password.', 'error');
+                return;
+            }
+            if (!isValidPassword(newPassword)) {
+                showFormMessage('profile-message', 'Password must be at least 6 characters long.', 'error');
                 return;
             }
 
@@ -138,7 +165,7 @@ async function initProfile() {
                     name:      newName,
                     email:     newEmail,
                     mobile:    newPhone,
-                    displayId: newDisplayId,
+                    password:  newPassword,
                 };
 
                 const updated = await updateUser(activeData.id, changes);

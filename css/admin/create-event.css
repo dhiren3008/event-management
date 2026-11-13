@@ -120,20 +120,6 @@
     color: var(--color-text-muted);
 }
 
-/* ===== PIN level (centred row, like the screenshot) ===== */
-
-.create-event__pin {
-    display: flex;
-    flex-direction: column;
-    gap: var(--space-sm);
-    width: min(36rem, 100%);
-    margin: 0.6rem auto 0;
-}
-
-.create-event__pin .field__label {
-    text-align: center;
-}
-
 .field-input--select .input {
     appearance: none;
     -webkit-appearance: none;

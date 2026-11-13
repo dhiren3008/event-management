@@ -101,7 +101,6 @@ function buildRow(user) {
         createEl('td', 'users-table__id', user.displayId || `#${user.id}`),
         createEl('td', 'users-table__name', user.name),
         createEl('td', 'users-table__muted', user.location || '\u2014'),
-        createEl('td', '', user.pinLevel || '\u2014'),
         statusCell,
         detailsCell
     );

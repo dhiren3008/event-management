@@ -53,6 +53,21 @@
   background: var(--color-bg);
 }
 
+.input:read-only,
+.input[readonly] {
+  background-color: #eaedf2;
+  color: var(--color-text-muted);
+  cursor: not-allowed;
+  user-select: none;
+}
+
+.input:read-only:focus,
+.input[readonly]:focus {
+  border-color: transparent;
+  outline: none;
+  background-color: #eaedf2;
+}
+
 .input--error {
   border-color: var(--color-error);
 }

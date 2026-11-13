@@ -40,3 +40,7 @@
     width: 1.15rem;
     height: 1.15rem;
 }
+
+.user-form__card .input-wrapper .input {
+    padding-right: 3rem;
+}

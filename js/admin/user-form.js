@@ -5,7 +5,6 @@ import { getTodayISO } from '../core/date.js';
 import { getIdParam } from '../core/nav.js';
 import { openOverlay, bindOverlayClose, showFormMessage, clearFormMessage } from '../core/dom.js';
 import { isValidEmail, isValidMobile } from '../core/utils.js';
-import { PIN_LEVELS } from '../core/config.js';
 
 const USERS_PAGE = '/pages/admin/users.html';
 
@@ -80,7 +79,6 @@ function fieldExists(id) {
 // missing ones as '' used to blank out the verifier's address, GST and team data.
 const OPTIONAL_FIELDS = [
     ['location', 'location'],
-    ['pinLevel', 'pin-level'],
     ['systemIncharge', 'system-incharge'],
     ['tabTeamName', 'team-name'],
     ['gst', 'gst'],
@@ -124,11 +122,14 @@ function buildPayload(name, email, phone, role) {
     }
 
     // The account-ID input is named differently on each role's page.
-    const idInput = ['member-id', 'verifier-id', 'admin-id'].find(fieldExists);
-    if (idInput) {
-        const customId = document.getElementById(idInput).value.trim();
-        if (customId) {
-            data.displayId = customId.startsWith('#') ? customId : `#${customId}`;
+    // Display IDs are system-generated and can only be set when creating a new account.
+    if (isCreatePage) {
+        const idInput = ['member-id', 'verifier-id', 'admin-id'].find(fieldExists);
+        if (idInput) {
+            const customId = document.getElementById(idInput).value.trim();
+            if (customId) {
+                data.displayId = customId.startsWith('#') ? customId : `#${customId}`;
+            }
         }
     }
 
@@ -197,13 +198,6 @@ document.querySelectorAll('[data-save]').forEach((button) => {
                 return;
             }
         }
-        if (fieldExists('pin-level')) {
-            const pinVal = getVal('pin-level');
-            if (!pinVal) {
-                showFormMessage('user-form-message', 'Please select a PIN level.');
-                return;
-            }
-        }
 
         button.disabled = true;
 
@@ -237,18 +231,22 @@ document.querySelectorAll('[data-save]').forEach((button) => {
 
             const data = buildPayload(name, email, phone, role);
 
-            if (data.displayId) {
-                const duplicateId = allUsers.find((u) =>
-                    u.displayId &&
-                    u.displayId.trim().toLowerCase() === data.displayId.trim().toLowerCase() &&
-                    (!userId || Number(u.id) !== Number(userId))
-                );
-                if (duplicateId) {
-                    showFormMessage('user-form-message', 'This ID is already in use by another user.');
-                    return;
+            if (!userId) {
+                // When creating a new user, ensure a unique display ID is assigned
+                if (!data.displayId) {
+                    data.displayId = generateNextDisplayId(allUsers);
+                } else {
+                    const duplicateId = allUsers.find((u) =>
+                        u.displayId &&
+                        u.displayId.trim().toLowerCase() === data.displayId.trim().toLowerCase()
+                    );
+                    if (duplicateId) {
+                        data.displayId = generateNextDisplayId(allUsers);
+                    }
                 }
-            } else if (!userId) {
-                data.displayId = generateNextDisplayId(allUsers);
+            } else {
+                // Existing user IDs must never be modified
+                delete data.displayId;
             }
 
             const messageEl = document.querySelector('.user-form__popup-text');
@@ -451,10 +449,13 @@ async function populateUserDetails(id) {
         setVal('member-id', user.displayId || `#${user.id}`);
         setVal('verifier-id', user.displayId || `#${user.id}`);
         setVal('admin-id', user.displayId || `#${user.id}`);
+        ['member-id', 'verifier-id', 'admin-id'].forEach((idField) => {
+            const el = document.getElementById(idField);
+            if (el) el.readOnly = true;
+        });
         setVal('email', user.email || '');
         setVal('phone', user.mobile || '');
         setVal('location', user.location || '');
-        setVal('pin-level', user.pinLevel || '');
         setVal('system-incharge', user.systemIncharge || '');
         setVal('team-name', user.tabTeamName || '');
         setVal('gst', user.gst || '');
@@ -468,33 +469,6 @@ async function populateUserDetails(id) {
     } catch (error) {
         console.error('Failed to load user details:', error);
         lockSave('Could not load this user. Check that the server is running and try again.');
-    }
-}
-
-function populatePinLevels() {
-    const pinSelect = document.getElementById('pin-level');
-    if (!pinSelect || pinSelect.tagName !== 'SELECT') {
-        return;
-    }
-    const hasPlaceholder = pinSelect.querySelector('option[disabled]') !== null;
-    const currentVal = pinSelect.value;
-    pinSelect.innerHTML = '';
-    if (hasPlaceholder) {
-        const placeholder = document.createElement('option');
-        placeholder.value = '';
-        placeholder.disabled = true;
-        placeholder.selected = true;
-        placeholder.textContent = 'Select PIN Level';
-        pinSelect.appendChild(placeholder);
-    }
-    PIN_LEVELS.forEach((level) => {
-        const option = document.createElement('option');
-        option.value = level;
-        option.textContent = level;
-        pinSelect.appendChild(option);
-    });
-    if (currentVal) {
-        pinSelect.value = currentVal;
     }
 }
 
@@ -518,8 +492,6 @@ async function init() {
         subtitle: '',
     });
 
-    populatePinLevels();
-
     if (isCreatePage) {
         try {
             const allUsers = await getUsers();
@@ -527,8 +499,9 @@ async function init() {
             const idInput = ['member-id', 'verifier-id', 'admin-id'].find(fieldExists);
             if (idInput) {
                 const el = document.getElementById(idInput);
-                if (el && !el.value) {
+                if (el) {
                     el.value = nextId;
+                    el.readOnly = true;
                 }
             }
         } catch (error) {

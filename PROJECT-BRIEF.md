@@ -19,7 +19,7 @@ A **role-based event and ticket booking management web app**. Three roles operat
 | Role | Core Capabilities |
 |---|---|
 | `admin` | Full system control: dashboard with weekly analytics, Event Management (create, edit, cancel, delete, assign verifiers), User Management (members, verifiers, admins: create, edit, deactivate, delete), own admin profile, settings. |
-| `member` | Browses active events with live search, booking window guards, and pin-level recommendations; books tickets (Single / Double / VIP with meal and dynamic spouse options) via a staged checkout with live overselling prevention, payment loader, and success confirmation; views personal ticket catalog with status pills and self-cancellation (24h cutoff rule); views live billing history and printable itemized invoices; edits profile details with real API persistence and session sync. |
+| `member` | Browses active events with live search and booking window guards; books tickets (Single / Double / VIP with meal and dynamic spouse options) via a staged checkout with live overselling prevention, payment loader, and success confirmation; views personal ticket catalog with status pills and self-cancellation (24h cutoff rule); views live billing history and printable itemized invoices; edits profile details with real API persistence and session sync. |
 | `verifier` | Venue check-in tool: views only events assigned to them by an admin (`date >= today` and active), searches attendees, and toggles ticket verification at the door (`verified: true/false`). |
 
 Users authenticate through a client-side authentication model, are routed to their role's dashboard, and interact with `json-server` REST endpoints.
@@ -71,7 +71,6 @@ Both this project and a sibling project (`Web development/Infinity`) target port
   "password": "member123",
   "role": "member",
   "createdAt": "2026-10-10",
-  "pinLevel": "Manager",
   "displayId": "#2002",
   "status": true,
   "mealPreference": "Non-Veg",
@@ -91,7 +90,6 @@ Both this project and a sibling project (`Web development/Infinity`) target port
 - `role`: `"admin" | "member" | "verifier"`.
 - `status`: `false` = deactivated account. Missing `status` field is treated as active.
 - `displayId`: Unique identifier (e.g., `#2001`). Generated via `generateNextDisplayId()` using `Math.max(2000, ...numbers) + 1` to ensure deleting a user never produces duplicate IDs.
-- `pinLevel`: Sourced from the shared `PIN_LEVELS` array in `js/core/config.js` across user forms and event configuration.
 - `password`: Stored in plaintext for this local demonstration app. Add flows auto-generate an 8-character temporary password.
 - **Seeded Logins**:
   - `admin@gmail.com` / `admin0000` (`admin`, id 1)
@@ -114,7 +112,6 @@ Both this project and a sibling project (`Web development/Infinity`) target port
   "price": 300,
   "capacity": 150,
   "description": "Early-stage founders pitch to a panel of investors...",
-  "pinLevel": "Senior Manager",
   "image": "",
   "createdAt": "2026-10-02",
   "status": "active",

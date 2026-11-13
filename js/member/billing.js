@@ -80,7 +80,6 @@ function populateInvoice(booking, event, user) {
             { label: 'Venue', value: event && event.location ? event.location : '-' },
             { label: 'Ticket Type', value: booking.ticketType || (booking.quantity > 1 ? 'Double' : 'Single') },
             { label: 'Quantity', value: `${booking.quantity || 1} Seat(s)` },
-            { label: 'PIN Level', value: user.pinLevel || 'NA' },
             { label: 'TAB Team Name', value: user.tabTeamName || 'NA' },
             { label: 'System Incharge', value: user.systemIncharge || 'NA' },
             { label: 'Meal Preference', value: booking.userMeal || 'Standard' },

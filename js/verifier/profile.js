@@ -1,5 +1,5 @@
 import { requireRole, saveUser } from '../core/auth.js';
-import { isValidEmail, isValidMobile } from '../core/utils.js';
+import { isValidEmail, isValidMobile, isValidPassword } from '../core/utils.js';
 import { updateUser, getUserById, getUsers } from '../core/api.js';
 import { renderLayout } from '../core/layout.js';
 import { bindOverlayClose, openOverlay, showFormMessage, clearFormMessage, showToast } from '../core/dom.js';
@@ -79,13 +79,31 @@ async function initProfile() {
     const phoneEl = document.getElementById('phone');
     const locationEl = document.getElementById('location');
     const passwordEl = document.getElementById('password');
+    const togglePasswordBtn = document.getElementById('toggle-password');
+    const iconEye = document.getElementById('icon-eye');
+    const iconEyeOff = document.getElementById('icon-eye-off');
 
     // Populate inputs
     if (userNameEl) userNameEl.value = activeData.name || '';
-    if (verifierIdEl) verifierIdEl.value = activeData.displayId || `#${activeData.id}`;
+    if (verifierIdEl) {
+        verifierIdEl.value = activeData.displayId || `#${activeData.id}`;
+        verifierIdEl.readOnly = true;
+    }
     if (emailEl) emailEl.value = activeData.email || '';
     if (phoneEl) phoneEl.value = activeData.mobile || '';
     if (locationEl) locationEl.value = activeData.location || 'All Venues';
+    if (passwordEl) passwordEl.value = activeData.password || '';
+
+    if (togglePasswordBtn && passwordEl) {
+        togglePasswordBtn.addEventListener('click', () => {
+            const isHidden = passwordEl.type === 'password';
+            passwordEl.type = isHidden ? 'text' : 'password';
+            togglePasswordBtn.setAttribute('aria-label', isHidden ? 'Hide password' : 'Show password');
+            togglePasswordBtn.setAttribute('aria-pressed', String(isHidden));
+            if (iconEye) iconEye.classList.toggle('is-hidden', isHidden);
+            if (iconEyeOff) iconEyeOff.classList.toggle('is-hidden', !isHidden);
+        });
+    }
 
     // 4. Save Updates click handler
     const saveBtn = document.getElementById('btn-save-profile') || document.querySelector('[data-save]');
@@ -97,7 +115,7 @@ async function initProfile() {
             const newEmail = emailEl?.value?.trim() || '';
             const newPhone = phoneEl?.value?.trim() || '';
             const newLocation = locationEl?.value?.trim() || 'All Venues';
-            const newPassword = passwordEl?.value?.trim() || '';
+            const newPassword = passwordEl?.value || '';
 
             // Basic validation
             if (!newName) {
@@ -115,6 +133,18 @@ async function initProfile() {
             if (newPhone && !isValidMobile(newPhone)) {
                 showFormMessage('profile-message', 'Phone must be between 10 and 12 digits.', 'error');
                 phoneEl?.focus();
+                return;
+            }
+
+            if (!newPassword.trim()) {
+                showFormMessage('profile-message', 'Please enter a password.', 'error');
+                passwordEl?.focus();
+                return;
+            }
+
+            if (!isValidPassword(newPassword)) {
+                showFormMessage('profile-message', 'Password must be at least 6 characters long.', 'error');
+                passwordEl?.focus();
                 return;
             }
 
@@ -154,11 +184,8 @@ async function initProfile() {
                     email: newEmail,
                     mobile: newPhone,
                     location: newLocation,
+                    password: newPassword,
                 };
-
-                if (newPassword) {
-                    changes.password = newPassword;
-                }
 
                 const updated = await updateUser(activeData.id, changes);
                 activeData = { ...activeData, ...updated, ...changes };
@@ -166,8 +193,6 @@ async function initProfile() {
                 // Keep session synchronized in localStorage
                 saveUser(activeData);
                 updateInitials(newName);
-
-                if (passwordEl) passwordEl.value = '';
 
                 showFormMessage('profile-message', 'Profile updated successfully!', 'success');
                 showToast('Profile updated successfully!', 'success');

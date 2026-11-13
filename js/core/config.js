@@ -22,7 +22,6 @@ export const ROLE_MENU = {
         { key: 'dashboard', label: 'Dashboard', icon: 'dashboard', href: ROLE_HOME.admin },
         { key: 'events', label: 'Event Management', icon: 'events', href: '/pages/admin/events.html' },
         { key: 'users', label: 'User Management', icon: 'users', href: '/pages/admin/users.html' },
-        { key: 'add-admin', label: 'Add Admin', icon: 'add-admin', href: '/pages/admin/add-admin.html' },
         { key: 'settings', label: 'Settings', icon: 'settings', href: '/pages/admin/settings.html' },
         { key: 'logout', label: 'Log out', icon: 'logout', action: 'logout' },
     ],
@@ -41,15 +40,3 @@ export const ROLE_MENU = {
     ],
 };
 
-// PIN level choices shared across user management and event configuration.
-export const PIN_LEVELS = [
-    'Manager',
-    'Senior Manager',
-    'HR',
-    'Sales Manager',
-    'Marketing Manager',
-    'Accountant',
-    'Staff',
-    'Supervisor',
-    'Guest',
-];

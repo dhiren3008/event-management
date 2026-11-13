@@ -59,14 +59,14 @@ function testAssignSearch(rawQuery, verifiers) {
     const query = raw.replace(/^#/, '').trim();
     return verifiers.filter(user => {
         const displayId = user.displayId || `#${user.id}`;
-        const haystack = `${displayId} ${user.id} ${user.name} ${user.location || ''} ${user.pinLevel || ''}`.toLowerCase();
+        const haystack = `${displayId} ${user.id} ${user.name} ${user.location || ''}`.toLowerCase();
         return query !== '' && (haystack.includes(query) || haystack.includes(raw));
     });
 }
 
 const verifierList = [
-    { id: 3, name: 'K. Raman', displayId: '#2003', location: 'Pune', pinLevel: 'Manager' },
-    { id: 8, name: 'Anita Roy', displayId: '#2008', location: 'Mumbai', pinLevel: 'Supervisor' },
+    { id: 3, name: 'K. Raman', displayId: '#2003', location: 'Pune' },
+    { id: 8, name: 'Anita Roy', displayId: '#2008', location: 'Mumbai' },
 ];
 
 assert(testAssignSearch('2003', verifierList).length === 1, 'Search "2003" finds verifier with displayId #2003');
@@ -75,11 +75,9 @@ assert(testAssignSearch('3', verifierList).length === 1, 'Search "3" finds verif
 assert(testAssignSearch('Raman', verifierList).length === 1, 'Search "Raman" finds verifier by name');
 assert(testAssignSearch('9999', verifierList).length === 0, 'Search "9999" returns 0 results');
 
-console.log('\n--- 4. Testing add-member.html PIN Level Control ---');
+console.log('\n--- 4. Testing add-member.html PIN Level Control Removed ---');
 const addMemberHtml = fs.readFileSync('pages/admin/add-member.html', 'utf-8');
-assert(addMemberHtml.includes('<select class="input" id="pin-level">'), 'add-member.html contains <select id="pin-level">');
-assert(addMemberHtml.includes('<option value="" selected disabled>Select PIN Level</option>'), 'add-member.html contains disabled placeholder option');
-assert(!addMemberHtml.includes('<input class="input" id="pin-level"'), 'add-member.html no longer has <input id="pin-level">');
+assert(!addMemberHtml.includes('id="pin-level"'), 'add-member.html has no pin-level control');
 
 console.log('\n--- 5. Testing Dashboard Search String Coercion ---');
 const dashboardEvents = [

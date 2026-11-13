@@ -1,26 +1,32 @@
-.login{
+.login {
     display: flex;
     min-height: 100vh;
+    min-height: 100dvh;
 }
+
 .login__panel {
-  display: flex;
-  flex-direction: column;
-  width: 100%;
-  padding: var(--space-xl);
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    padding: var(--space-xl) clamp(1.25rem, 3vw, var(--space-xl));
 }
+
 .login__hero {
-  display: none;
+    display: none;
 }
 
 @media (min-width: 900px) {
-  .login__panel {
-    flex: 0 0 37%;
-  }
+    .login__panel {
+        flex: 0 0 clamp(420px, 35vw, 520px);
+        min-width: 420px;
+        padding: var(--space-xl) clamp(1.5rem, 3vw, var(--space-xl));
+    }
 
-  .login__hero {
-    display: flex;
-    flex: 1;
-  }
+    .login__hero {
+        display: flex;
+        flex: 1;
+        min-width: 0;
+    }
 }
 
 /* LOGO */
@@ -59,24 +65,24 @@
 .login__hero {
     position: relative;
     align-items: center;
-    padding: var(--space-xl);
+    padding: clamp(1.5rem, 4vw, var(--space-xl));
     background:
         url(../assets/images/Rectangle1.jpg) center / cover no-repeat;
     color: var(--color-text-on-primary);
 }
 .login__hero-content {
     max-width: 32rem;
-    margin-left: 8%;
+    margin-left: clamp(1rem, 6%, 4rem);
 }
 
 .login__hero-title {
     margin-bottom: var(--space-md);
-    font-size: 3.5rem;
+    font-size: clamp(2.25rem, 3.5vw, 3.5rem);
     font-weight: 700;
-    line-height: 1.1;
+    line-height: 1.15;
 }
 
 .login__hero-text {
-    font-size: var(--font-size-lg);
+    font-size: clamp(1rem, 1.2vw, var(--font-size-lg));
     font-weight: 400;
 }

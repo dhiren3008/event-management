@@ -88,6 +88,21 @@
     border-radius: var(--radius-sm);
 }
 
+.user-form__card .input:read-only,
+.user-form__card .input[readonly] {
+    background-color: #eaedf2;
+    color: var(--color-text-muted);
+    cursor: not-allowed;
+    user-select: none;
+}
+
+.user-form__card .input:read-only:focus,
+.user-form__card .input[readonly]:focus {
+    border-color: transparent;
+    outline: none;
+    background-color: #eaedf2;
+}
+
 .field {
     display: flex;
     flex-direction: column;

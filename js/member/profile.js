@@ -1,5 +1,5 @@
 import { requireRole, saveUser } from '../core/auth.js';
-import { isValidEmail, isValidMobile } from '../core/utils.js';
+import { isValidEmail, isValidMobile, isValidPassword } from '../core/utils.js';
 import { updateUser, getUserById, getUsers } from '../core/api.js';
 import { renderLayout } from '../core/layout.js';
 import { bindOverlayClose, openOverlay, showFormMessage, clearFormMessage, showToast } from '../core/dom.js';
@@ -53,7 +53,6 @@ async function initProfile() {
     const memberIdEl = document.getElementById('member-id');
     const emailEl = document.getElementById('email');
     const phoneEl = document.getElementById('phone');
-    const pinLevelEl = document.getElementById('pin-level');
     const mealPrefEl = document.getElementById('meal-preference');
     const spouseEl = document.getElementById('spouse');
     const gstEl = document.getElementById('gst');
@@ -63,13 +62,18 @@ async function initProfile() {
     const stateEl = document.getElementById('state');
     const zipEl = document.getElementById('zip');
     const passwordEl = document.getElementById('password');
+    const togglePasswordBtn = document.getElementById('toggle-password');
+    const iconEye = document.getElementById('icon-eye');
+    const iconEyeOff = document.getElementById('icon-eye-off');
 
     // Populate inputs
     if (userNameEl) userNameEl.value = activeData.name || '';
-    if (memberIdEl) memberIdEl.value = activeData.displayId || `#${activeData.id}`;
+    if (memberIdEl) {
+        memberIdEl.value = activeData.displayId || `#${activeData.id}`;
+        memberIdEl.readOnly = true;
+    }
     if (emailEl) emailEl.value = activeData.email || '';
     if (phoneEl) phoneEl.value = activeData.mobile || '';
-    if (pinLevelEl) pinLevelEl.value = activeData.pinLevel || 'Member';
     if (mealPrefEl) mealPrefEl.value = activeData.mealPreference || 'Non-Veg';
     if (spouseEl) spouseEl.value = activeData.spouse || '';
     if (gstEl) gstEl.value = activeData.gst || '';
@@ -78,6 +82,18 @@ async function initProfile() {
     if (cityEl) cityEl.value = activeData.city || '';
     if (stateEl) stateEl.value = activeData.state || '';
     if (zipEl) zipEl.value = activeData.zip || '';
+    if (passwordEl) passwordEl.value = activeData.password || '';
+
+    if (togglePasswordBtn && passwordEl) {
+        togglePasswordBtn.addEventListener('click', () => {
+            const isHidden = passwordEl.type === 'password';
+            passwordEl.type = isHidden ? 'text' : 'password';
+            togglePasswordBtn.setAttribute('aria-label', isHidden ? 'Hide password' : 'Show password');
+            togglePasswordBtn.setAttribute('aria-pressed', String(isHidden));
+            if (iconEye) iconEye.classList.toggle('is-hidden', isHidden);
+            if (iconEyeOff) iconEyeOff.classList.toggle('is-hidden', !isHidden);
+        });
+    }
 
     // Hide unconnected topbar search
     const searchEl = document.querySelector('.search');
@@ -119,7 +135,7 @@ async function initProfile() {
             const newCity = cityEl?.value?.trim() || '';
             const newState = stateEl?.value?.trim() || '';
             const newZip = zipEl?.value?.trim() || '';
-            const newPassword = passwordEl?.value?.trim() || '';
+            const newPassword = passwordEl?.value || '';
 
             // Basic validation
             if (!newName) {
@@ -137,6 +153,18 @@ async function initProfile() {
             if (newPhone && !isValidMobile(newPhone)) {
                 showFormMessage('profile-message', 'Phone must be between 10 and 12 digits.', 'error');
                 phoneEl?.focus();
+                return;
+            }
+
+            if (!newPassword.trim()) {
+                showFormMessage('profile-message', 'Please enter a password.', 'error');
+                passwordEl?.focus();
+                return;
+            }
+
+            if (!isValidPassword(newPassword)) {
+                showFormMessage('profile-message', 'Password must be at least 6 characters long.', 'error');
+                passwordEl?.focus();
                 return;
             }
 
@@ -172,31 +200,26 @@ async function initProfile() {
                 }
 
                 const changes = {
-                name: newName,
-                email: newEmail,
-                mobile: newPhone,
-                mealPreference: newMeal,
-                spouse: newSpouse,
-                gst: newGst,
-                address1: newAddress,
-                address2: newAddress2,
-                city: newCity,
-                state: newState,
-                zip: newZip,
-            };
+                    name: newName,
+                    email: newEmail,
+                    mobile: newPhone,
+                    mealPreference: newMeal,
+                    spouse: newSpouse,
+                    gst: newGst,
+                    address1: newAddress,
+                    address2: newAddress2,
+                    city: newCity,
+                    state: newState,
+                    zip: newZip,
+                    password: newPassword,
+                };
 
-            if (newPassword) {
-                changes.password = newPassword;
-            }
-
-            const updated = await updateUser(activeData.id, changes);
-            activeData = { ...activeData, ...updated };
+                const updated = await updateUser(activeData.id, changes);
+                activeData = { ...activeData, ...updated, ...changes };
 
                 // Keep session synchronized in localStorage
                 saveUser(activeData);
                 updateInitials(newName);
-
-                if (passwordEl) passwordEl.value = '';
 
                 showFormMessage('profile-message', 'Profile updated successfully!', 'success');
                 showToast('Profile updated successfully!', 'success');

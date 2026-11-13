@@ -5,7 +5,6 @@ import { getTodayISO } from '../core/date.js';
 import { getIdParam, goToPage } from '../core/nav.js';
 import { isEmpty, summariseBookings } from '../core/utils.js';
 import { showFormMessage, clearFormMessage } from '../core/dom.js';
-import { PIN_LEVELS } from '../core/config.js';
 
 // Create Event — and Edit Event when the page is opened as ?id=N.
 // Pattern used across the admin section: read fields -> validate -> API
@@ -47,23 +46,6 @@ function fieldValue(id) {
     return document.getElementById(id).value.trim();
 }
 
-function populatePinLevels() {
-    const select = document.getElementById('event-pin');
-    if (!select) return;
-    const current = select.value;
-    select.replaceChildren(
-        ...PIN_LEVELS.map((level) => {
-            const option = document.createElement('option');
-            option.value = level;
-            option.textContent = level;
-            return option;
-        })
-    );
-    if (current && PIN_LEVELS.includes(current)) {
-        select.value = current;
-    }
-}
-
 function readForm() {
     const files = document.getElementById('event-files').files;
     return {
@@ -78,7 +60,6 @@ function readForm() {
         price: fieldValue('event-price'),
         capacity: fieldValue('event-capacity'),
         location: fieldValue('event-location'),
-        pinLevel: document.getElementById('event-pin').value,
         // json-server cannot store uploads, so only the first file's name is kept.
         image: files.length > 0 ? files[0].name : existingImage,
     };
@@ -196,7 +177,6 @@ function buildPayload(values) {
         price: Number(values.price),
         capacity: Number(values.capacity),
         location: values.location,
-        pinLevel: values.pinLevel,
         image: values.image,
     };
 }
@@ -275,11 +255,6 @@ function prefill(event) {
     setValue('event-price', event.price);
     setValue('event-capacity', event.capacity);
     setValue('event-location', event.location);
-
-    const pin = document.getElementById('event-pin');
-    if (event.pinLevel) {
-        pin.value = event.pinLevel;
-    }
 
     existingImage = event.image || '';
     if (existingImage) {
@@ -367,8 +342,6 @@ async function init() {
         title: '',
         subtitle: '',
     });
-
-    populatePinLevels();
 
     if (!editingId) {
         return;
