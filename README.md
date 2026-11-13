@@ -11,9 +11,9 @@ A full-featured Event Management web application built with vanilla HTML5, CSS3,
 ## Demo Credentials
 | Role | Email | Password |
 | :--- | :--- | :--- |
-| **Admin** | `admin@gmail.com` | `admin123` |
-| **Member** | `member@gmail.com` | `member123` |
-| **Verifier** | `verifier@gmail.com` | `verifier123` |
+| **Admin** | `admin@gmail.com` | `123456` |
+| **Member** | `member@gmail.com` | `123456` |
+| **Verifier** | `verifier@gmail.com` | `123456` |
 
 ## Getting Started
 
@@ -35,4 +35,4 @@ A full-featured Event Management web application built with vanilla HTML5, CSS3,
    ```bash
    npm start
    ```
-4. Open [http://localhost:3000](http://localhost:3000) in your browser.
+4. Open [https://event-management-za2k.onrender.com] in your browser.
