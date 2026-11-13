@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Log in | Infinite Success Events</title>
+
+  <link rel="icon" type="image/svg+xml" href="/assets/favicon.svg">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="/css/base.css">
+  <link rel="stylesheet" href="/css/components.css">
+  <link rel="stylesheet" href="/css/login.css">
+</head>
+<body>
+    <main class="login">
+
+        <section class="login__panel">
+            <!-- left side: brand + form (Parts 3-5) -->
+            <!-- PART 1 -->
+            <div class="login__brand">
+                <img src="/assets/images/Logo.png" alt="Infinite Success Events logo">
+            </div>
+
+            <div class="login__form-area">
+                <h1 class="login__title">Log in</h1>
+                <div class="tabs" role="tablist">
+                    <button type="button" class="tabs__btn is-active" data-tab="email" id="tab-email" role="tab" aria-selected="true" aria-controls="email-form">Email</button>
+                    <button type="button" class="tabs__btn" data-tab="mobile" id="tab-mobile" role="tab" aria-selected="false" aria-controls="mobile-form">Mobile Number</button>
+                </div>
+                
+                <form id="email-form" class="login__form" role="tabpanel" aria-labelledby="tab-email" novalidate>
+                    <p id="email-form-message" class="form-message form-message--error is-hidden" role="alert"></p>
+                    
+                    <div class="form-group">
+                        <label for="email" class="form-label">Mail ID</label>
+                        <input type="email" id="email" name="email" class="input"
+                        placeholder="typeyourmailid@gmail.com" autocomplete="email">
+                        <p id="email-error" class="form-error is-hidden"></p>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="password" class="form-label">Password</label>
+                        <div class="input-wrapper">
+                            <input type="password" id="password" name="password" class="input" placeholder="Enter password" maxlength="10" autocomplete="current-password">
+                            <button type="button" id="toggle-password" class="input-wrapper__toggle" aria-label="Show password" aria-pressed="false">
+                                <svg id="icon-eye" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                                    <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z" />
+                                    <circle cx="12" cy="12" r="3" />
+                                </svg>
+                                <svg id="icon-eye-off" class="is-hidden" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                                    <path d="M17.94 17.94A10.07 10.07 0 0 1 12 20c-7 0-11-8-11-8a18.45 18.45 0 0 1 5.06-5.94M9.9 4.24A9.12 9.12 0 0 1 12 4c7 0 11 8 11 8a18.5 18.5 0 0 1-2.16 3.19m-6.72-1.07a3 3 0 1 1-4.24-4.24" />
+                                    <line x1="1" y1="1" x2="23" y2="23" />
+                                </svg>
+                            </button>
+                        </div>
+                        <p id="password-error" class="form-error is-hidden"></p>
+                    </div>
+                
+                    <a href="/forgot-password.html" class="link login__forgot">Forgot Password?</a>
+                    <button type="submit" id="email-submit" class="btn btn--primary btn--block">Login</button>
+                </form>
+            
+                <form id="mobile-form" class="login__form is-hidden" role="tabpanel" aria-labelledby="tab-mobile" novalidate>
+                    <p id="mobile-form-message" class="form-message form-message--error is-hidden"
+                    role="alert"></p>
+                    
+                    <div class="form-group">
+                        <label for="mobile" class="form-label">Mobile Number</label>
+                        <div class="input-wrapper">
+                            <span class="input-wrapper__prefix">+91</span>
+                            <input type="tel" id="mobile" name="mobile" class="input input--prefixed" placeholder="Enter mobile number" inputmode="numeric" minlength="10" maxlength="12" pattern="[0-9]{10,12}" autocomplete="tel-national">
+                        </div>
+                        <p id="mobile-error" class="form-error is-hidden"></p>
+                    </div>
+                    
+                    <button type="submit" id="mobile-submit" class="btn btn--primary btn--block">Get OTP</button>
+                </form>
+            </div>
+            
+        </section>
+
+        <section class="login__hero">
+            <div class="login__hero-content">
+                <h2 class="login__hero-title">Welcome Back!</h2>
+                <p class="login__hero-text">
+                To keep connected with us please login with your personal info
+                </p>
+            </div>
+        </section>
+    </main>
+
+  <script type="module" src="/js/core/login.js"></script>
+</body>
+</html>

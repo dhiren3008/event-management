@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Event Management | Infinite Success Events</title>
+    <link rel="icon" type="image/svg+xml" href="/assets/favicon.svg">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="/css/base.css">
+    <link rel="stylesheet" href="/css/components.css">
+    <link rel="stylesheet" href="/css/layout.css">
+    <link rel="stylesheet" href="/css/admin/events.css">
+</head>
+<body>
+    <!-- Page structure. js/core/layout.js wraps this in the sidebar/topbar
+         shell; js/admin/events.js fills rows and drives the assign dialog. -->
+    <div id="app">
+        <div class="event-page">
+            <div class="event-page__top">
+                <h1 class="page-heading">Event List</h1>
+
+                <div class="event-page__actions">
+                    <a class="pill event-page__create" href="/pages/admin/create-event.html">Create Event</a>
+
+                    <div class="fab-stack">
+                        <button class="fab fab--disabled" type="button" disabled
+                                title="More actions" aria-label="More actions">
+                            <span class="fab__icon">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" 
+                                stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="5" cy="12" r="1.6" fill="currentColor" stroke="none"/><circle cx="12" cy="12" r="1.6" fill="currentColor" stroke="none"/>
+                                <circle cx="19" cy="12" r="1.6" fill="currentColor" stroke="none"/></svg>
+                            </span>
+                        </button>
+
+                        <button class="fab" type="button" data-action="assign-first"
+                                title="Assign event" aria-label="Assign event">
+                            <span class="fab__icon">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" 
+                                stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><polyline points="9 12 11 14 15 10"/></svg>
+                            </span>
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Status filter: same .tabs component the users page uses. -->
+            <div class="event-page__filters">
+                <div class="tabs" role="tablist" aria-label="Event status">
+                    <button class="tabs__btn is-active" type="button" role="tab"
+                            aria-selected="true" data-tab="all">All</button>
+                    <button class="tabs__btn" type="button" role="tab"
+                            aria-selected="false" data-tab="upcoming">Upcoming</button>
+                    <button class="tabs__btn" type="button" role="tab"
+                            aria-selected="false" data-tab="today">Today</button>
+                    <button class="tabs__btn" type="button" role="tab"
+                            aria-selected="false" data-tab="past">Past</button>
+                </div>
+            </div>
+
+            <p class="form-message is-hidden" id="events-message"></p>
+
+            <section class="events-card">
+                <div class="events-card__scroll">
+                    <table class="events-table">
+                        <thead>
+                            <tr>
+                                <th>Event ID</th>
+                                <th>Event Name</th>
+                                <th>Date</th>
+                                <th>Location</th>
+                                <th>Details</th>
+                                <th>Assign Events</th>
+                            </tr>
+                        </thead>
+                        <tbody id="events-body"></tbody>
+                    </table>
+                </div>
+                <p class="events-card__empty is-hidden" id="events-empty">No events yet</p>
+            </section>
+        </div>
+    </div>
+
+    <!-- ===== Dialog: assign event ===== -->
+    <div class="modal-overlay is-hidden" id="assign-overlay">
+        <div class="modal modal--wide" role="dialog" aria-modal="true" aria-labelledby="assign-title">
+            <div class="modal__head">
+                <h2 class="modal__title" id="assign-title">Assign Event</h2>
+                <button class="modal__close" type="button" data-close="assign-overlay"
+                        aria-label="Close">&times;</button>
+            </div>
+
+            <div class="modal__body">
+                <div class="modal__search-row">
+                    <label class="modal__search">
+                        <span class="modal__search-icon">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+                        </span>
+                        <input class="modal__search-input" id="assign-search" type="search"
+                                placeholder="Search" aria-label="Search">
+                    </label>
+                    <button class="square-btn" type="button" id="assign-search-btn" aria-label="Search">
+                        <span class="square-btn__icon">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><polyline points="9 12 11 14 15 10"/></svg>
+                        </span>
+                    </button>
+                </div>
+
+                <div class="assign-table__scroll">
+                    <table class="assign-table">
+                        <thead>
+                            <tr>
+                                <th class="assign-table__check-cell">
+                                    <input class="check" type="checkbox" id="assign-all" aria-label="Select all">
+                                </th>
+                                <th>Verifier ID</th>
+                                <th>User Name</th>
+                                <th>Location</th>
+                                <th>PIN Level</th>
+                                <th>Status</th>
+                                <th>Details</th>
+                            </tr>
+                        </thead>
+                        <tbody id="assign-body"></tbody>
+                    </table>
+                </div>
+            </div>
+
+            <div class="modal__footer">
+                <button class="btn btn--primary modal__assign" type="button" id="assign-submit">Assign</button>
+                <p class="form-message is-hidden" id="assign-message"></p>
+            </div>
+        </div>
+    </div>
+
+    <!-- ===== Dialog: user details ===== -->
+    <div class="modal-overlay is-hidden" id="user-overlay">
+        <div class="modal" role="dialog" aria-modal="true" aria-labelledby="user-title">
+            <div class="modal__head">
+                <h2 class="modal__title" id="user-title">User Details</h2>
+                <button class="modal__close" type="button" data-close="user-overlay"
+                        aria-label="Close">&times;</button>
+            </div>
+            <div class="modal__body">
+                <dl class="detail-list" id="user-list"></dl>
+            </div>
+        </div>
+    </div>
+
+    <script type="module" src="/js/admin/events.js"></script>
+</body>
+</html>

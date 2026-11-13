@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>User Management | Infinite Success Events</title>
+    <link rel="icon" type="image/svg+xml" href="/assets/favicon.svg">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="/css/base.css">
+    <link rel="stylesheet" href="/css/components.css">
+    <link rel="stylesheet" href="/css/layout.css">
+    <link rel="stylesheet" href="/css/admin/users.css">
+</head>
+<body>
+    <!-- Page structure. js/core/layout.js wraps this in the sidebar/topbar
+         shell; js/admin/users.js only fills rows, drives the tabs and sends
+         "User Details" to the details pages. -->
+    <div id="app">
+        <div class="users-page">
+            <div class="users-page__top">
+                <!-- Tab switch + the add actions, left of the row. -->
+                <div class="users-page__lead">
+                    <div class="tabs users-page__tabs" role="tablist" aria-label="User type">
+                        <button class="tabs__btn is-active" type="button" role="tab"
+                                aria-selected="true" data-tab="member">Member</button>
+                        <button class="tabs__btn" type="button" role="tab"
+                                aria-selected="false" data-tab="verifier">Ticket Verifier</button>
+                        <button class="tabs__btn" type="button" role="tab"
+                                aria-selected="false" data-tab="admin">Admin</button>
+                    </div>
+
+                    <a class="pill users-page__add" data-tab="member" href="/pages/admin/add-member.html">Add New Member</a>
+                    <a class="pill users-page__add is-hidden" data-tab="verifier" href="/pages/admin/add-verifier.html">Add New Ticket Verifier</a>
+                    <a class="pill users-page__add is-hidden" data-tab="admin" href="/pages/admin/add-admin.html">Add New Admin</a>
+                </div>
+
+                <!-- Decorative placeholders, as in the design. -->
+                <div class="fab-stack fab-stack--row">
+                    <button class="fab fab--disabled" type="button" disabled
+                            title="More actions" aria-label="More actions">
+                        <span class="fab__icon">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="5" cy="12" r="1.6" fill="currentColor" stroke="none"/><circle cx="12" cy="12" r="1.6" fill="currentColor" stroke="none"/><circle cx="19" cy="12" r="1.6" fill="currentColor" stroke="none"/></svg>
+                        </span>
+                    </button>
+
+                    <button class="fab fab--disabled" type="button" disabled
+                            title="Assign events" aria-label="Assign events">
+                        <span class="fab__icon">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><polyline points="9 12 11 14 15 10"/></svg>
+                        </span>
+                    </button>
+                </div>
+            </div>
+
+            <p class="form-message is-hidden" id="users-message"></p>
+
+            <section class="users-card">
+                <div class="users-card__scroll">
+                    <table class="users-table">
+                        <thead>
+                            <tr>
+                                <th>Cust. ID</th>
+                                <th>User Name</th>
+                                <th>Location</th>
+                                <th>PIN Level</th>
+                                <th>Status</th>
+                                <th>Details</th>
+                            </tr>
+                        </thead>
+                        <tbody id="users-body"></tbody>
+                    </table>
+                </div>
+                <p class="users-card__empty is-hidden" id="users-empty">No users yet</p>
+            </section>
+        </div>
+    </div>
+
+    <script type="module" src="/js/admin/users.js"></script>
+</body>
+</html>

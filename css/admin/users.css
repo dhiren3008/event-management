@@ -1,0 +1,165 @@
+/* ===== Admin › User Management (screenshots: Member + Ticket Verifier) ===== */
+
+.users-page__status {
+    color: var(--color-text-muted);
+    margin-bottom: var(--space-sm);
+}
+
+/* Tab switch + the two add actions on the left, FABs pushed to the right
+   edge. The lead group grows so the tabs can keep their designed width. */
+.users-page__top {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: space-between;
+    gap: var(--space-md);
+    margin-bottom: var(--space-lg);
+}
+
+.users-page__lead {
+    display: flex;
+    flex: 1 1 auto;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: var(--space-md);
+}
+
+/* "Add New Member" / "Add New Ticket Verifier" — same pill as the events
+   page's "Create Event". */
+.users-page__add {
+    padding: 0.7rem 1.4rem;
+    font-size: 0.9rem;
+}
+
+/* Tabs grow inside the lead group up to 26rem, so they never crowd the
+   add buttons. */
+.users-page__tabs {
+    flex: 1 1 18rem;
+    max-width: 32rem;
+}
+
+.users-page__top .fab-stack {
+    margin-left: auto;
+}
+
+/* ===== User table card ===== */
+
+.users-card {
+    padding: var(--space-lg) 1.75rem;
+    background: var(--color-bg);
+    border-radius: var(--radius-lg);
+    box-shadow: var(--shadow-card);
+}
+
+.users-card__scroll {
+    max-height: min(34rem, calc(100vh - 17rem));
+    overflow: auto;
+    padding: 0.15rem; /* room for the row shadows so they are not clipped */
+    scrollbar-color: var(--color-primary) transparent;
+    scrollbar-width: thin;
+}
+
+/* Purple scrollbar, as in the design. */
+.users-card__scroll::-webkit-scrollbar {
+    width: 10px;
+}
+
+.users-card__scroll::-webkit-scrollbar-track {
+    background: transparent;
+}
+
+.users-card__scroll::-webkit-scrollbar-thumb {
+    background: var(--color-primary);
+    border-radius: 999px;
+    border: 2px solid transparent;
+    background-clip: padding-box;
+}
+
+.users-card__empty {
+    padding: var(--space-xl) 0;
+    color: var(--color-text-muted);
+    text-align: center;
+}
+
+/* Rows read as separate rounded cards: separated borders instead of rules. */
+.users-table {
+    width: 100%;
+    min-width: 44rem;
+    border-collapse: separate;
+    border-spacing: 0 0.75rem;
+}
+
+.users-table th {
+    padding: 0 1.25rem 0.35rem;
+    color: var(--color-text-muted);
+    font-size: 0.9rem;
+    font-weight: 500;
+    text-align: left;
+}
+
+.users-table td {
+    padding: 1.35rem 1.25rem;
+    background: var(--color-bg);
+    border-top: 1px solid var(--color-border);
+    border-bottom: 1px solid var(--color-border);
+    font-size: 0.95rem;
+    vertical-align: middle;
+}
+
+/* Round the ends of each row. */
+.users-table td:first-child {
+    border-left: 1px solid var(--color-border);
+    border-top-left-radius: 16px;
+    border-bottom-left-radius: 16px;
+}
+
+.users-table td:last-child {
+    border-right: 1px solid var(--color-border);
+    border-top-right-radius: 16px;
+    border-bottom-right-radius: 16px;
+}
+
+.users-table__id {
+    font-weight: 700;
+}
+
+.users-table__name {
+    font-weight: 600;
+}
+
+.users-table__muted {
+    color: var(--color-text-muted);
+}
+
+/* Status and Details sit over their controls. */
+.users-table th:nth-child(5),
+.users-table th:nth-child(6),
+.users-table td:nth-child(5),
+.users-table td:nth-child(6) {
+    text-align: center;
+}
+
+.users-table td:nth-child(5),
+.users-table td:nth-child(6) {
+    width: 1%; /* shrink to the control so the columns stay tidy */
+    white-space: nowrap;
+}
+
+/* ===== Small screens ===== */
+
+@media (max-width: 599px) {
+    .users-card {
+        padding: var(--space-md);
+    }
+
+    .users-table th,
+    .users-table td {
+        padding-left: 0.9rem;
+        padding-right: 0.9rem;
+    }
+
+    .users-table td {
+        padding-top: 1rem;
+        padding-bottom: 1rem;
+    }
+}

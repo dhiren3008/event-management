@@ -1,0 +1,42 @@
+/* ===== Admin › Profile Details (screenshot: Admin Profile Screen) ===== */
+
+/* The card, grid, inputs, .page-heading and actions all come from
+   user-form.css (linked before this file) — this file only adds the photo
+   box with its edit badge. */
+
+.profile-photo {
+    position: relative;
+    display: grid;
+    place-items: center;
+    width: 8.75rem;
+    height: 8.75rem;
+    border-radius: 14px;
+    background: var(--gradient-primary);
+    color: var(--color-text-on-primary);
+}
+
+.profile-photo__initials {
+    font-size: 2rem;
+    font-weight: 600;
+    letter-spacing: 0.02em;
+}
+
+/* Purple pencil badge overlapping the photo's bottom-right corner. */
+.profile-photo__edit {
+    position: absolute;
+    right: -0.5rem;
+    bottom: -0.5rem;
+    display: grid;
+    place-items: center;
+    width: 2.25rem;
+    height: 2.25rem;
+    border: 3px solid var(--color-bg);
+    border-radius: 8px;
+    background: var(--gradient-primary);
+    color: var(--color-text-on-primary);
+}
+
+.profile-photo__edit svg {
+    width: 1.15rem;
+    height: 1.15rem;
+}

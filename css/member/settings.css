@@ -1,0 +1,109 @@
+/* ===== Member › Settings ===== */
+
+/* Ensure the topbar action buttons (messages, notifications, profile) align to the right */
+.topbar__actions {
+    margin-left: auto;
+    justify-content: flex-end;
+}
+
+.page-heading {
+    color: var(--color-heading);
+    font-size: 2.1rem;
+    font-weight: 500;
+    line-height: 1.2;
+    margin-bottom: var(--space-lg);
+}
+
+.settings-page {
+    display: flex;
+    flex-direction: column;
+    max-width: 78rem;
+}
+
+/* ===== Card ===== */
+.settings-card {
+    display: flex;
+    flex-direction: column;
+    gap: 1.1rem;
+    padding: 1.5rem;
+    background: var(--color-bg);
+    border-radius: var(--radius-lg);
+    box-shadow: var(--shadow-card);
+}
+
+/* ===== Row ===== */
+.settings-row {
+    display: flex;
+    align-items: center;
+    gap: 1.1rem;
+    padding: 1.35rem 1.5rem;
+    background: var(--color-input-bg);
+    border: 0;
+    border-radius: 16px;
+    font-family: inherit;
+    text-align: left;
+    color: var(--color-text);
+    cursor: pointer;
+    transition: background var(--transition), opacity var(--transition);
+}
+
+.settings-row:not(.is-active):hover {
+    background: #eef0f4;
+}
+
+.settings-row__icon,
+.settings-row__chevron {
+    display: inline-flex;
+    flex-shrink: 0;
+    color: var(--color-text-muted);
+}
+
+.settings-row__icon svg {
+    width: 1.4rem;
+    height: 1.4rem;
+}
+
+.settings-row__chevron {
+    margin-left: auto;
+}
+
+.settings-row__chevron svg {
+    width: 1.25rem;
+    height: 1.25rem;
+}
+
+.settings-row__label {
+    font-size: 1.15rem;
+    font-weight: 600;
+}
+
+/* ===== Active Row (Account) ===== */
+.settings-row.is-active {
+    background: var(--gradient-primary);
+    color: var(--color-text-on-primary);
+}
+
+.settings-row.is-active .settings-row__icon,
+.settings-row.is-active .settings-row__chevron {
+    color: var(--color-text-on-primary);
+}
+
+.settings-row.is-active:hover {
+    opacity: 0.95;
+}
+
+/* ===== Small screens ===== */
+@media (max-width: 599px) {
+    .page-heading {
+        font-size: 1.6rem;
+    }
+
+    .settings-card {
+        padding: 1rem;
+    }
+
+    .settings-row {
+        padding: 1.1rem 1.25rem;
+        font-size: 1rem;
+    }
+}

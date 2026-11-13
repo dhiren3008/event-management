@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Events | Infinite Success Events</title>
+    <link rel="icon" type="image/svg+xml" href="/assets/favicon.svg">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="/css/base.css">
+    <link rel="stylesheet" href="/css/components.css">
+    <link rel="stylesheet" href="/css/layout.css">
+    <link rel="stylesheet" href="/css/member/events.css">
+</head>
+<body>
+    <div id="app">
+        <div class="member-events">
+
+            <!-- ===== Section 1: Upcoming Events ===== -->
+            <section class="events-section">
+                <div class="events-section__header">
+                    <h2 class="events-section__title">Upcoming Events</h2>
+                    <a href="#" class="events-section__link" id="view-all-upcoming">View All</a>
+                </div>
+
+                <!-- Container for dynamic Upcoming Events -->
+                <div class="events-grid" id="upcoming-events-grid">
+                    <p style="color: var(--color-text-muted); font-size: 0.9rem;">Loading upcoming events...</p>
+                </div>
+            </section>
+
+            <!-- ===== Section 2: Recommended ===== -->
+            <section class="events-section">
+                <div class="events-section__header">
+                    <h2 class="events-section__title">Recommended</h2>
+                    <a href="#" class="events-section__link" id="view-all-recommended">View All</a>
+                </div>
+
+                <!-- Container for dynamic Recommended Events -->
+                <div class="events-grid" id="recommended-events-grid">
+                    <p style="color: var(--color-text-muted); font-size: 0.9rem;">Loading recommended events...</p>
+                </div>
+            </section>
+
+        </div>
+    </div>
+
+    <script type="module" src="/js/member/events.js"></script>
+</body>
+</html>

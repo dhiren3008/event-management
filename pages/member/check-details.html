@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Check Details | Infinite Success Events</title>
+    <link rel="icon" type="image/svg+xml" href="/assets/favicon.svg">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="/css/base.css">
+    <link rel="stylesheet" href="/css/components.css">
+    <link rel="stylesheet" href="/css/layout.css">
+    <link rel="stylesheet" href="/css/member/ticket-details.css">
+</head>
+<body>
+    <div id="app">
+        <div class="ticket-details-page">
+            <h1 class="ticket-details-page__title">Check Details</h1>
+
+            <!-- ===== Split Panel Card ===== -->
+            <div class="ticket-details-card">
+                
+                <!-- ===== Left: Vertical Event Poster ===== -->
+                <aside class="event-poster" id="poster-card">
+                    <div class="event-poster__overlay">
+                        <div class="event-poster__heading">
+                            <h2 class="event-poster__title" id="poster-title">Loading event...</h2>
+                            <p class="event-poster__tagline" id="poster-tagline"></p>
+                        </div>
+
+                        <div class="event-poster__footer">
+                            <div class="poster-meta-item poster-meta-item--full">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                    <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path>
+                                    <circle cx="12" cy="10" r="3"></circle>
+                                </svg>
+                                <span id="poster-venue">Venue TBA</span>
+                            </div>
+
+                            <div class="poster-meta-row">
+                                <div class="poster-meta-item">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                        <rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect>
+                                        <line x1="16" y1="2" x2="16" y2="6"></line>
+                                        <line x1="8" y1="2" x2="8" y2="6"></line>
+                                        <line x1="3" y1="10" x2="21" y2="10"></line>
+                                    </svg>
+                                    <span id="poster-date">Date TBA</span>
+                                </div>
+
+                                <div class="poster-meta-item">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                        <circle cx="12" cy="12" r="10"></circle>
+                                        <polyline points="12 6 12 12 16 14"></polyline>
+                                    </svg>
+                                    <span id="poster-time">Time TBA</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </aside>
+
+                <!-- ===== Right: Read-Only Details Review ===== -->
+                <main class="attendee-form-wrap">
+                    <div class="review-details-list">
+                        
+                        <div class="review-item">
+                            <span class="review-label">User Name</span>
+                            <span class="review-value" id="review-first-name">-</span>
+                        </div>
+
+                        <div class="review-item">
+                            <span class="review-label">Last Name</span>
+                            <span class="review-value" id="review-last-name">-</span>
+                        </div>
+
+                        <div class="review-item">
+                            <span class="review-label">Address</span>
+                            <span class="review-value" id="review-address">-</span>
+                        </div>
+
+                        <div class="review-item">
+                            <span class="review-label">Phone Number</span>
+                            <span class="review-value" id="review-phone">-</span>
+                        </div>
+
+                        <div class="review-item">
+                            <span class="review-label">Email ID</span>
+                            <span class="review-value" id="review-email">-</span>
+                        </div>
+
+                        <div class="review-item">
+                            <span class="review-label">Ticket Type</span>
+                            <span class="review-value" id="review-ticket-type">Single</span>
+                        </div>
+
+                        <div class="review-item" id="review-spouse-name-item" style="display: none;">
+                            <span class="review-label">Spouse Name</span>
+                            <span class="review-value" id="review-spouse-name">-</span>
+                        </div>
+
+                        <div class="review-item" id="review-spouse-meal-item" style="display: none;">
+                            <span class="review-label">Spouse Meal</span>
+                            <span class="review-value" id="review-spouse-meal">Non-Veg</span>
+                        </div>
+
+                        <div class="review-item">
+                            <span class="review-label">User Meal</span>
+                            <span class="review-value" id="review-user-meal">Non-Veg</span>
+                        </div>
+
+                        <!-- Actions: Make Edits & Proceed to Pay -->
+                        <div class="form-actions" style="margin-top: 2rem;">
+                            <a href="/pages/member/ticket-details.html" class="btn-make-edits" id="btn-make-edits">Make Edits</a>
+                            <button type="button" class="btn-proceed" id="btn-open-payment">Proceed to Pay</button>
+                        </div>
+
+                    </div>
+                </main>
+            </div>
+
+            <!-- ===== Modal: Payment Breakdown ===== -->
+            <div class="details-modal-overlay is-hidden" id="check-details-modal">
+                <div class="details-modal">
+                    <div class="details-modal__head" id="modal-head">
+                        <h2 class="details-modal__title">Ticket Details</h2>
+                        <button type="button" class="details-modal__close" id="modal-close" aria-label="Close">&times;</button>
+                    </div>
+
+                    <div class="details-modal__body" id="modal-summary-view">
+                        <div class="summary-list">
+                            <div class="summary-item"><span class="summary-label">Date</span><span class="summary-val" id="modal-date">: Loading...</span></div>
+                            <div class="summary-item"><span class="summary-label">Time</span><span class="summary-val" id="modal-time">: Loading...</span></div>
+                            <div class="summary-item"><span class="summary-label">Venue</span><span class="summary-val" id="modal-venue">: Loading...</span></div>
+                            <div class="summary-item"><span class="summary-label">Ticket Type</span><span class="summary-val" id="modal-ticket-type">: Single</span></div>
+                            <div class="summary-item"><span class="summary-label">Sponsor Name</span><span class="summary-val" id="modal-sponsor">: NA</span></div>
+                            <div class="summary-item"><span class="summary-label">PIN Level</span><span class="summary-val" id="modal-pin-level">: NA</span></div>
+                            <div class="summary-item"><span class="summary-label">TAB Team Name</span><span class="summary-val" id="modal-tab-team">: NA</span></div>
+                            <div class="summary-item"><span class="summary-label">System Incharge</span><span class="summary-val" id="modal-system-incharge">: NA</span></div>
+                            <div class="summary-item"><span class="summary-label">Meal Preference</span><span class="summary-val" id="modal-user-meal">: Non-Veg</span></div>
+                            <div class="summary-item" id="modal-spouse-row" style="display: none;"><span class="summary-label">Spouse Name</span><span class="summary-val" id="modal-spouse-name">: NA</span></div>
+                            <div class="summary-item" id="modal-spouse-meal-row" style="display: none;"><span class="summary-label">Spouse Meal Preference</span><span class="summary-val" id="modal-spouse-meal">: Non-Veg</span></div>
+                            <div class="summary-item"><span class="summary-label">User ID</span><span class="summary-val" id="modal-user-id">: Loading...</span></div>
+                            <div class="summary-item"><span class="summary-label">GST</span><span class="summary-val" id="modal-gst">: NA</span></div>
+                        </div>
+
+                        <hr class="summary-divider">
+
+                        <div class="summary-total-row">
+                            <span class="total-label">Subtotal</span>
+                            <span class="total-val" id="modal-subtotal">₹0</span>
+                        </div>
+                        <div class="summary-total-row">
+                            <span class="total-label total-label--main">Total</span>
+                            <span class="total-val total-val--main" id="modal-total">₹0</span>
+                        </div>
+
+                        <button type="button" class="btn-pay-now" id="btn-pay-now">Pay Now</button>
+                    </div>
+
+                    <!-- Loader View -->
+                    <div class="modal-status-view is-hidden" id="modal-loader-view">
+                        <div class="modal-spinner"></div>
+                        <h3 class="status-title">Processing Payment</h3>
+                        <p class="status-desc">Securing your seats, please wait a moment...</p>
+                    </div>
+
+                    <!-- Success View -->
+                    <div class="modal-status-view is-hidden" id="modal-success-view">
+                        <div class="modal-success-icon">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="34" height="34" viewBox="0 0 24 24" fill="none" stroke="#22c55e" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                                <polyline points="20 6 9 17 4 12"></polyline>
+                            </svg>
+                        </div>
+                        <h3 class="status-title">Booking Confirmed!</h3>
+                        <p class="status-desc">Your ticket has been booked successfully.</p>
+                        <a href="/pages/member/tickets.html" class="btn-pay-now" style="display: block; text-align: center; text-decoration: none; margin-top: 1.5rem;">View My Tickets</a>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+    <script type="module" src="/js/member/check-details.js"></script>
+</body>
+</html>

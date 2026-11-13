@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Infinite Success Events</title>
+
+    <link rel="icon" type="image/svg+xml" href="/assets/favicon.svg">
+    <meta http-equiv="refresh" content="0; url=/login.html">
+</head>
+<body>
+    <p>Redirecting to <a href="/login.html">Log in</a>…</p>
+
+    <script type="module">
+        // Send logged-in users straight to their own dashboard.
+        import { STORAGE_KEY, ROLE_HOME, LOGIN_PAGE } from '/js/core/config.js';
+
+        let user = null;
+        try {
+            const stored = localStorage.getItem(STORAGE_KEY);
+            user = stored ? JSON.parse(stored) : null;
+        } catch (error) {
+            user = null;
+        }
+
+        const target = (user && ROLE_HOME[user.role]) || LOGIN_PAGE;
+        window.location.replace(target);
+    </script>
+</body>
+</html>

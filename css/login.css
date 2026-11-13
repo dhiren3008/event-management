@@ -1,0 +1,82 @@
+.login{
+    display: flex;
+    min-height: 100vh;
+}
+.login__panel {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  padding: var(--space-xl);
+}
+.login__hero {
+  display: none;
+}
+
+@media (min-width: 900px) {
+  .login__panel {
+    flex: 0 0 37%;
+  }
+
+  .login__hero {
+    display: flex;
+    flex: 1;
+  }
+}
+
+/* LOGO */
+.login__brand img {
+  height: 50px;
+  width: auto;
+}
+
+.login__form-area {
+  width: 100%;
+  max-width: 380px;
+  margin: auto;
+}
+
+/* heading and spacing between the form’s pieces */
+
+.login__title {
+  margin-bottom: var(--space-lg);
+  font-size: var(--font-size-xl);
+  font-weight: 600;
+  color: var(--color-heading);
+}
+
+.login__form-area .tabs {
+  margin-bottom: var(--space-lg);
+}
+
+.login__forgot {
+  display: block;
+  margin: calc(var(--space-md) * -1) 0 var(--space-md);
+  text-align: right;
+}
+
+/* Right-hand photo */
+
+.login__hero {
+    position: relative;
+    align-items: center;
+    padding: var(--space-xl);
+    background:
+        url(../assets/images/Rectangle1.jpg) center / cover no-repeat;
+    color: var(--color-text-on-primary);
+}
+.login__hero-content {
+    max-width: 32rem;
+    margin-left: 8%;
+}
+
+.login__hero-title {
+    margin-bottom: var(--space-md);
+    font-size: 3.5rem;
+    font-weight: 700;
+    line-height: 1.1;
+}
+
+.login__hero-text {
+    font-size: var(--font-size-lg);
+    font-weight: 400;
+}

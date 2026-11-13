@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard | Infinite Success Events</title>
+    <link rel="icon" type="image/svg+xml" href="/assets/favicon.svg">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="/css/base.css">
+    <link rel="stylesheet" href="/css/components.css">
+    <link rel="stylesheet" href="/css/layout.css">
+    <link rel="stylesheet" href="/css/admin/dashboard.css">
+</head>
+<body>
+    <!-- Page structure. js/core/layout.js wraps this in the sidebar/topbar
+         shell; js/admin/dashboard-stats.js renders the greeting and the
+         updates list. All numbers below are static placeholders — nothing is
+         read from db.json. -->
+    <div id="app">
+        <div class="dashboard" id="dashboard">
+            <div class="dashboard__main">
+
+                <div class="dashboard__notice is-hidden" id="dashboard-notice">
+                    <p class="form-message" id="dashboard-message" role="status"></p>
+                    <button class="btn btn--outline" type="button" id="dashboard-retry">Try again</button>
+                </div>
+
+                <!-- ===== Hero: next upcoming event ===== -->
+                <section class="hero">
+                    <div class="hero__info">
+                        <p class="hero__label">Upcoming Event Details</p>
+                        <h2 class="hero__title" id="hero-title">&mdash;</h2>
+
+                        <ul class="hero__meta" id="hero-meta">
+                            <li class="hero__meta-item hero__meta-item--full">
+                                <span class="hero__icon">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+                                </span>
+                                <span id="hero-location">&mdash;</span>
+                            </li>
+                            <li class="hero__meta-item">
+                                <span class="hero__icon">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
+                                </span>
+                                <span id="hero-date">&mdash;</span>
+                            </li>
+                            <li class="hero__meta-item">
+                                <span class="hero__icon">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+                                </span>
+                                <span id="hero-time">&mdash;</span>
+                            </li>
+                        </ul>
+                    </div>
+
+                    <div class="hero__stats" id="hero-stats">
+                        <div class="hero__stat">
+                            <p class="hero__stat-value" id="hero-sold">&mdash;</p>
+                            <p class="hero__stat-label">Tickets sold till date</p>
+                        </div>
+                        <div class="hero__stat">
+                            <p class="hero__stat-value" id="hero-left">&mdash;</p>
+                            <p class="hero__stat-label">Tickets are left</p>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- ===== Weekly basis status ===== -->
+                <section>
+                    <div class="section-heading">
+                        <h3 class="section-heading__title">Weekly Basis Status</h3>
+                        <span class="section-heading__icon">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="6 9 12 15 18 9"/></svg>
+                        </span>
+                    </div>
+
+                    <div class="dashboard__stats">
+                        <article class="stat-card">
+                            <div class="stat-card__body">
+                                <p class="stat-card__value" id="stat-tickets">&mdash;</p>
+                                <p class="stat-card__label">Tickets are sold in this week</p>
+                            </div>
+                            <span class="stat-card__icon">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M2 9a3 3 0 0 1 0 6v3a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2v-3a3 3 0 0 1 0-6V6a2 2 0 0 0-2-2H4a2 2 0 0 0-2 2z"/><path d="M13 5v2"/><path d="M13 11v2"/><path d="M13 17v2"/></svg>
+                            </span>
+                        </article>
+
+                        <article class="stat-card">
+                            <div class="stat-card__body">
+                                <p class="stat-card__value" id="stat-revenue">&mdash;</p>
+                                <p class="stat-card__label">Revenue generated in this week</p>
+                            </div>
+                            <span class="stat-card__icon">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="22 7 13.5 15.5 8.5 10.5 2 17"/><polyline points="16 7 22 7 22 13"/></svg>
+                            </span>
+                        </article>
+
+                        <article class="stat-card">
+                            <div class="stat-card__body">
+                                <p class="stat-card__value" id="stat-events">&mdash;</p>
+                                <p class="stat-card__label">Events are scheduled in this week</p>
+                            </div>
+                            <span class="stat-card__icon">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/><polyline points="9 16 11 18 15 14"/></svg>
+                            </span>
+                        </article>
+
+                        <article class="stat-card">
+                            <div class="stat-card__body">
+                                <p class="stat-card__value" id="stat-users">&mdash;</p>
+                                <p class="stat-card__label">Users registered in this week</p>
+                            </div>
+                            <span class="stat-card__icon">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+                            </span>
+                        </article>
+                    </div>
+                </section>
+            </div>
+
+            <!-- ===== Recent event updates ===== -->
+            <aside class="dashboard__side">
+                <section class="updates-panel">
+                    <h3 class="updates-panel__title">Recent Event Updates</h3>
+                    <div class="updates-panel__list" id="updates-list"></div>
+                </section>
+            </aside>
+        </div>
+    </div>
+
+    <script type="module" src="/js/admin/dashboard-stats.js"></script>
+</body>
+</html>

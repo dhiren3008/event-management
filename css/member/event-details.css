@@ -1,0 +1,101 @@
+.event-details-page__title{
+    font-size: 2.2rem;
+    font-weight: 600;
+    color: var(--color-primary);
+}
+.event-details-card{
+    background: var(--color-bg);
+    border-radius: 22px;
+    padding: 1.5rem;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.04);
+}
+.event-banner{
+    position: relative;
+    height: 220px;
+    border-radius: 18px;
+    overflow: hidden;
+}
+.event-banner__image{
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+.event-banner__actions{
+    position: absolute;
+    top: 1.25rem;
+    right: 1.25rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+}
+.banner-btn{
+    width: 42px;
+    height: 42px;
+    border-radius: 12px;
+    background-color: var(--color-primary);
+    color: var(--color-bg);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.event-header-row{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-top: 1.5rem;
+}
+.event-name{
+    color: var(--color-primary);
+    font-size: 1.75rem;
+    font-weight: 700;
+}
+.event-header-row__text p{
+    font-weight: 600;
+    color: #1e1b2e;
+    font-size: 0.95rem;
+}
+
+.event-header-row__actions{
+    display: flex;   
+    align-items:center;
+    gap: 1rem;
+}
+
+.event-price-badge{
+    background: var(--gradient-primary);
+    color: var(--color-text-on-primary);
+    font-weight: 700;
+    padding: 0.65rem 1.5rem;
+    border-radius: 12px;
+}
+.btn-book-now{
+    text-decoration: none;
+    background: var(--gradient-primary);
+    color: var(--color-text-on-primary);
+    font-weight: 700;
+    padding: 0.65rem 1.5rem;
+    border-radius: 12px;
+}
+.event-description{
+    color: var(--color-text-muted);
+    line-height: 1.6rem;
+}
+.event-meta-grid{
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+}
+.meta-spec{
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 0.25rem;
+}
+.meta-spec__label{
+    font-weight: 700;
+    color: var(--color-text);
+    margin-bottom: 0.25rem;
+}
+.meta-spec__value{
+    font-weight: 400;
+    color: var(--color-text-muted);
+    margin-bottom: 0.25rem;
+}

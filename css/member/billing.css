@@ -1,0 +1,464 @@
+/* ===== Member Billing Page ===== */
+
+/* Page Layout */
+.billing-page {
+    display: flex;
+    flex-direction: column;
+    padding-bottom: 2rem;
+}
+
+.billing-page__title {
+    font-size: 2.3rem;
+    font-weight: 600;
+    color: var(--color-primary);
+    margin: 0 0 1.5rem 0;
+}
+
+/* White Card Container */
+.billing-card {
+    background: var(--color-bg);
+    border-radius: 22px;
+    padding: 1.5rem 2rem;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.04);
+}
+
+.billing-table-wrap {
+    width: 100%;
+    overflow-x: auto;
+}
+
+/* Custom Purple Scrollbar for Table */
+.billing-table-wrap::-webkit-scrollbar {
+    height: 6px;
+    width: 6px;
+}
+
+.billing-table-wrap::-webkit-scrollbar-track {
+    background: #f4effd;
+    border-radius: 10px;
+}
+
+.billing-table-wrap::-webkit-scrollbar-thumb {
+    background: #6f2dbd;
+    border-radius: 10px;
+}
+
+/* Billing Table */
+.billing-table {
+    width: 100%;
+    border-collapse: separate;
+    border-spacing: 0 0.85rem;
+    text-align: left;
+}
+
+/* Header Columns */
+.billing-table thead th {
+    padding: 0.5rem 1.5rem 0.75rem;
+    font-size: 0.85rem;
+    font-weight: 600;
+    color: var(--color-text-muted);
+    border: none;
+    white-space: nowrap;
+}
+
+/* Row Strips */
+.billing-row td {
+    background: #f8f6fb;
+    padding: 1.15rem 1.5rem;
+    vertical-align: middle;
+    transition: background var(--transition);
+}
+
+.billing-row:hover td {
+    background: #f1edfa;
+}
+
+/* Rounded Row Corners */
+.billing-row td:first-child {
+    border-top-left-radius: 16px;
+    border-bottom-left-radius: 16px;
+}
+
+.billing-row td:last-child {
+    border-top-right-radius: 16px;
+    border-bottom-right-radius: 16px;
+}
+
+/* Data Columns Typography */
+.bill-id {
+    font-size: 0.9rem;
+    font-weight: 600;
+    color: #1e1b2e;
+    white-space: nowrap;
+}
+
+.event-name {
+    font-size: 0.95rem;
+    font-weight: 700;
+    color: #1e1b2e;
+    white-space: nowrap;
+}
+
+.bill-date,
+.bill-type {
+    font-size: 0.9rem;
+    font-weight: 500;
+    color: #374151;
+    white-space: nowrap;
+}
+
+.bill-amount {
+    font-size: 0.95rem;
+    font-weight: 700;
+    color: #1e1b2e;
+    white-space: nowrap;
+}
+
+.bill-action {
+    white-space: nowrap;
+}
+
+/* "View" Action Button */
+.btn-view {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0.45rem 1.5rem;
+    border-radius: 999px;
+    background: var(--gradient-primary);
+    color: #ffffff;
+    font-size: 0.82rem;
+    font-weight: 600;
+    border: none;
+    cursor: pointer;
+    white-space: nowrap;
+    font-family: inherit;
+    transition: opacity var(--transition), transform var(--transition);
+}
+
+.btn-view:hover {
+    opacity: 0.92;
+    transform: translateY(-1px);
+}
+
+/* ===== Responsive Breakpoints ===== */
+@media (max-width: 900px) {
+    .billing-card {
+        padding: 1.25rem 1rem;
+    }
+
+    .billing-table thead th,
+    .billing-row td {
+        padding: 0.9rem 1rem;
+    }
+}
+
+/* ===== Invoice Modal ===== */
+.invoice-modal {
+    position: fixed;
+    inset: 0;
+    z-index: 999;
+    display: none;
+    align-items: center;
+    justify-content: center;
+    padding: 2rem 1rem;
+    overflow-y: auto;
+}
+
+.invoice-modal.is-open {
+    display: flex;
+}
+
+.invoice-modal__backdrop {
+    position: fixed;
+    inset: 0;
+    background: rgba(18, 16, 26, 0.45);
+    backdrop-filter: blur(2px);
+    -webkit-backdrop-filter: blur(2px);
+}
+
+/* Modal Content Card */
+.invoice-card {
+    position: relative;
+    z-index: 1000;
+    width: 100%;
+    max-width: 650px;
+    background: var(--color-bg);
+    border-radius: 20px;
+    padding: 2.5rem 2.5rem;
+    box-shadow: 0 20px 45px rgba(28, 15, 60, 0.16);
+    margin: auto;
+}
+
+/* Header */
+.invoice-title {
+    font-size: 1.85rem;
+    font-weight: 700;
+    color: var(--color-text);
+    margin: 0;
+}
+
+.invoice-number {
+    color: var(--color-heading);
+    margin-left: 0;
+}
+
+.invoice-subtitle {
+    font-size: 1.05rem;
+    font-weight: 500;
+    color: var(--color-text-muted);
+    margin: 0.5rem 0 0;
+    padding-bottom: 0.85rem;
+    border-bottom: 1.5px solid var(--color-border);
+}
+
+/* Parties & Dates (2 Columns) */
+.invoice-parties {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1.5rem;
+    padding: 1.5rem 0;
+}
+
+.party-label {
+    display: block;
+    font-size: 0.82rem;
+    color: #9292a0;
+    margin-bottom: 0.35rem;
+}
+
+.party-name {
+    font-size: 0.95rem;
+    font-weight: 700;
+    color: #1f1f2e;
+    margin: 0 0 0.5rem 0;
+}
+
+.party-address {
+    font-size: 0.82rem;
+    line-height: 1.5;
+    color: #7b7b8c;
+    margin: 0;
+}
+
+.invoice-date-block {
+    margin-top: 1.25rem;
+}
+
+.date-value {
+    font-size: 0.95rem;
+    font-weight: 700;
+    color: #1f1f2e;
+}
+
+.date-value sup {
+    font-size: 0.65em;
+}
+
+/* Ticket Details */
+.invoice-details {
+    padding-top: 0.5rem;
+}
+
+.details-heading {
+    font-size: 0.82rem;
+    font-weight: 600;
+    color: #9292a0;
+    margin-bottom: 0.85rem;
+}
+
+.details-list {
+    display: flex;
+    flex-direction: column;
+    gap: 0.4rem;
+}
+
+.details-row {
+    display: grid;
+    grid-template-columns: 200px 1fr;
+    font-size: 0.88rem;
+}
+
+.details-row dt {
+    color: #2e2c38;
+    font-weight: 500;
+}
+
+.details-row dd {
+    margin: 0;
+    color: #2e2c38;
+    font-weight: 600;
+}
+
+/* Pricing Summary */
+.invoice-summary {
+    margin-top: 1.5rem;
+}
+
+.summary-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1rem 0;
+    border-top: 1px solid #ebe9f2;
+    font-size: 1rem;
+    font-weight: 700;
+    color: #1f1f2e;
+}
+
+.summary-row--total {
+    border-bottom: 1px solid #ebe9f2;
+}
+
+/* Notice Banner */
+.invoice-notice {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    background: #fff8f0;
+    border: 1px solid #fed7aa;
+    border-radius: 12px;
+    padding: 0.75rem 1.15rem;
+    margin-top: 1.5rem;
+}
+
+.notice-icon {
+    width: 20px;
+    height: 20px;
+    stroke: #f59e0b;
+    flex-shrink: 0;
+}
+
+.notice-text {
+    font-size: 0.78rem;
+    color: #78716c;
+}
+
+/* Action Buttons */
+.invoice-actions {
+    display: flex;
+    justify-content: space-between;
+    gap: 1rem;
+    margin-top: 2rem;
+}
+
+.btn-invoice {
+    flex: 1;
+    max-width: 140px;
+    padding: 0.65rem 1rem;
+    border-radius: 10px;
+    font-size: 0.88rem;
+    font-weight: 600;
+    font-family: inherit;
+    cursor: pointer;
+    text-align: center;
+    transition: all var(--transition);
+}
+
+.btn-invoice--outline {
+    background: #ffffff;
+    border: 1.5px solid #6f2dbd;
+    color: #6f2dbd;
+}
+
+.btn-invoice--outline:hover {
+    background: #f7f2fc;
+}
+
+.btn-invoice--primary {
+    background: #7a3bc5;
+    border: 1.5px solid #7a3bc5;
+    color: #ffffff;
+}
+
+.btn-invoice--primary:hover {
+    background: #6a2cc7;
+}
+
+/* Responsive adjustment */
+@media (max-width: 600px) {
+    .invoice-card {
+        padding: 1.5rem 1.25rem;
+    }
+
+    .invoice-parties {
+        grid-template-columns: 1fr;
+        gap: 1.25rem;
+    }
+
+    .details-row {
+        grid-template-columns: 150px 1fr;
+    }
+
+    .invoice-actions {
+        flex-direction: column;
+    }
+
+    .btn-invoice {
+        max-width: 100%;
+    }
+}
+
+/* Status Pills */
+.status-pill {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-width: 5.5rem;
+    padding: 0.38rem 1.1rem;
+    border-radius: 999px;
+    font-size: 0.78rem;
+    font-weight: 600;
+    color: #ffffff;
+    white-space: nowrap;
+}
+
+.status-pill--confirm {
+    background: #10b981;
+}
+
+.status-pill--cancel {
+    background: #ef4444;
+}
+
+.billing-row--cancelled td {
+    opacity: 0.8;
+}
+
+.billing-empty {
+    text-align: center;
+    padding: 3rem 1rem;
+    color: var(--color-text-muted);
+}
+
+/* Print Styles */
+@media print {
+    body * {
+        visibility: hidden;
+    }
+    .invoice-modal,
+    .invoice-card,
+    .invoice-card * {
+        visibility: visible;
+    }
+    .invoice-modal {
+        position: absolute;
+        left: 0;
+        top: 0;
+        padding: 0;
+        display: block !important;
+        background: transparent;
+    }
+    .invoice-card {
+        box-shadow: none;
+        border: 1px solid #ddd;
+        max-width: 100%;
+        margin: 0;
+        padding: 1.5rem;
+    }
+    .invoice-modal__backdrop,
+    .invoice-actions {
+        display: none !important;
+    }
+}
+

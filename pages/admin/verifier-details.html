@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ticket Verifier Details | Infinite Success Events</title>
+    <link rel="icon" type="image/svg+xml" href="/assets/favicon.svg">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="/css/base.css">
+    <link rel="stylesheet" href="/css/components.css">
+    <link rel="stylesheet" href="/css/layout.css">
+    <link rel="stylesheet" href="/css/admin/user-form.css">
+</head>
+<body>
+    <!-- One ticket-verifier account, read from ?id=. js/admin/user-form.js
+         loads the record, saves the fields this page renders, and handles
+         deletion. -->
+    <div id="app" data-active-key="users" data-role="verifier">
+        <div class="user-form">
+            <h1 class="page-heading">Ticket Verifier Details</h1>
+
+            <form class="user-form__card" id="user-form" novalidate>
+                <div class="user-form__avatar">
+                    <span class="user-form__avatar-box">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+                    </span>
+                </div>
+
+                <div class="user-form__grid">
+                    <div class="field">
+                        <label class="field__label" for="user-name">User Name</label>
+                        <input class="input" id="user-name" type="text">
+                    </div>
+                    <div class="field">
+                        <label class="field__label" for="verifier-id">Ticket Verifier ID</label>
+                        <input class="input" id="verifier-id" type="text">
+                    </div>
+
+                    <div class="field">
+                        <label class="field__label" for="email">Email ID</label>
+                        <input class="input" id="email" type="email">
+                    </div>
+                    <div class="field">
+                        <label class="field__label" for="phone">Phone number</label>
+                        <input class="input" id="phone" type="tel" inputmode="numeric" minlength="10" maxlength="12" pattern="[0-9]{10,12}" placeholder="Enter phone number">
+                    </div>
+
+                    <div class="field">
+                        <label class="field__label" for="location">Location</label>
+                        <input class="input" id="location" type="text">
+                    </div>
+                    <div class="field">
+                        <label class="field__label" for="pin-level">PIN Level</label>
+                        <span class="field-input field-input--select">
+                            <select class="input" id="pin-level">
+                                <option>Manager</option>
+                                <option>Senior Manager</option>
+                                <option>HR</option>
+                                <option>Sales Manager</option>
+                                <option>Marketing Manager</option>
+                                <option>Accountant</option>
+                                <option>Staff</option>
+                                <option>Supervisor</option>
+                                <option>Guest</option>
+                            </select>
+                            <span class="field-input__icon">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="6 9 12 15 18 9"/></svg>
+                            </span>
+                        </span>
+                    </div>
+                </div>
+
+                <p class="form-message is-hidden" id="user-form-message"></p>
+
+                <div class="user-form__actions">
+                    <button class="btn btn--outline" type="button" data-cancel>Cancel</button>
+                    <button class="btn btn--primary" type="button" data-save>Save Details</button>
+                    <button class="btn btn--outline user-form__delete" type="button" id="delete-user">Delete Account</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- ===== Dialog: save confirmation ===== -->
+    <div class="modal-overlay is-hidden" id="save-overlay">
+        <div class="modal" role="dialog" aria-modal="true" aria-labelledby="save-popup-title">
+            <div class="modal__head">
+                <h2 class="modal__title" id="save-popup-title">Save Details</h2>
+                <button class="modal__close" type="button" data-close="save-overlay"
+                        aria-label="Close">&times;</button>
+            </div>
+            <div class="modal__body">
+                <p class="user-form__popup-text">
+                    Details saved to the database.
+                </p>
+                <button class="btn btn--primary user-form__popup-ok" type="button"
+                        data-close="save-overlay">Got it</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- ===== Dialog: confirm account deletion ===== -->
+    <div class="modal-overlay is-hidden" id="delete-user-overlay">
+        <div class="modal" role="dialog" aria-modal="true" aria-labelledby="delete-user-title">
+            <div class="modal__head">
+                <h2 class="modal__title" id="delete-user-title">Delete Account</h2>
+                <button class="modal__close" type="button" data-close="delete-user-overlay"
+                        aria-label="Close">&times;</button>
+            </div>
+            <div class="modal__body">
+                <p class="modal__text" id="delete-user-text"></p>
+                <p class="form-message is-hidden" id="delete-user-message"></p>
+            </div>
+            <div class="modal__footer">
+                <div class="modal__actions">
+                    <button class="btn btn--outline" type="button" data-close="delete-user-overlay">Cancel</button>
+                    <button class="btn btn--primary user-form__delete-confirm" type="button"
+                            id="confirm-delete-user">Delete Account</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script type="module" src="/js/admin/user-form.js"></script>
+</body>
+</html>

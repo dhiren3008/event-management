@@ -1,0 +1,313 @@
+/* ===== Shell ===== */
+
+/* Page files ship their own static markup inside #app. It is hidden until
+   renderLayout() nests it inside the shell, so the content never paints
+   without its sidebar. An empty #app matches nothing, so nothing changes.
+   Shell-shipped modal overlays are exempt: they arrive WITH the shell (never
+   before it) and are toggled purely by .is-hidden — without this, this rule
+   would outrank .modal-overlay's display and swallow the logout dialog. */
+#app > :not(.layout):not(.modal-overlay) {
+  display: none;
+}
+
+.layout {
+  min-height: 100vh;
+  background-color: var(--color-page-bg);
+}
+
+.layout__main {
+  min-width: 0;
+}
+
+.layout__content {
+  padding: var(--space-md);
+}
+
+.layout__overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 90;
+  background-color: var(--color-overlay);
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity var(--transition), visibility var(--transition);
+}
+
+.layout.is-menu-open .layout__overlay {
+  opacity: 1;
+  visibility: visible;
+}
+
+/* ===== Sidebar ===== */
+.sidebar {
+  position: fixed;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  z-index: 100;
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-lg);
+  width: var(--sidebar-width);
+  max-width: 85vw;
+  padding: var(--space-lg);
+  overflow-y: auto;
+  background-color: var(--color-bg);
+  transform: translateX(-100%);
+  visibility: hidden;
+  transition: transform var(--transition), visibility var(--transition);
+}
+
+.layout.is-menu-open .sidebar {
+  transform: translateX(0);
+  visibility: visible;
+}
+
+.sidebar__logo {
+  width: 9rem;
+  height: auto;
+}
+
+.sidebar__heading {
+  font-weight: 600;
+}
+
+.sidebar__nav {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-sm);
+}
+
+.sidebar__link {
+  display: flex;
+  align-items: center;
+  gap: var(--space-md);
+  width: 100%;
+  padding: calc(var(--space-sm) + var(--space-xs)) var(--space-md);
+  border-radius: var(--radius-md);
+  color: var(--color-text-muted);
+  font-size: var(--font-size-sm);
+  text-align: left;
+  transition: background-color var(--transition), color var(--transition);
+}
+
+.sidebar__link svg {
+  flex-shrink: 0;
+  width: 1.25rem;
+  height: 1.25rem;
+}
+
+.sidebar__link:hover {
+  background-color: var(--color-input-bg);
+  color: var(--color-primary-dark);
+}
+
+.sidebar__link.is-active {
+  background: var(--gradient-primary);
+  color: var(--color-text-on-primary);
+}
+
+.sidebar__link.is-disabled,
+.sidebar__link.is-disabled:hover {
+  background-color: transparent;
+  color: var(--color-text-muted);
+  cursor: not-allowed;
+  opacity: 0.6;
+}
+
+/* ===== Top bar ===== */
+.topbar {
+  display: flex;
+  align-items: center;
+  gap: var(--space-md);
+  padding: var(--space-md);
+}
+
+.topbar__heading {
+  flex: 1;
+  min-width: 0;
+}
+
+.topbar__title {
+  font-size: var(--font-size-md);
+  font-weight: 600;
+}
+
+.topbar__subtitle {
+  font-size: var(--font-size-sm);
+  color: var(--color-text-muted);
+}
+
+.topbar__subtitle:empty {
+  display: none;
+}
+
+.topbar__actions {
+  display: flex;
+  align-items: center;
+  gap: var(--space-sm);
+}
+
+.topbar__menu-button,
+.icon-button {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  width: 2.5rem;
+  height: 2.5rem;
+  border-radius: var(--radius-md);
+  background-color: var(--color-bg);
+  color: var(--color-text-muted);
+  transition: color var(--transition);
+}
+
+.topbar__menu-button svg,
+.icon-button svg,
+.search svg {
+  width: 1.25rem;
+  height: 1.25rem;
+}
+
+.icon-button:hover {
+  color: var(--color-primary);
+}
+
+.search {
+  display: none;
+  align-items: center;
+  gap: var(--space-sm);
+  width: 17rem;
+  height: 2.5rem;
+  padding: 0 var(--space-md);
+  border-radius: var(--radius-md);
+  background-color: var(--color-bg);
+  color: var(--color-text-muted);
+}
+
+.search__input {
+  flex: 1;
+  min-width: 0;
+  border: none;
+  outline: none;
+  background: none;
+}
+
+.search__input::placeholder {
+  color: var(--color-text-muted);
+}
+
+.avatar {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  width: 2.5rem;
+  height: 2.5rem;
+  border-radius: var(--radius-md);
+  background: var(--gradient-primary);
+  color: var(--color-text-on-primary);
+  font-size: var(--font-size-sm);
+  font-weight: 600;
+}
+
+/* Admin-only avatar: it's a <button> that opens Profile Details. */
+.avatar--button {
+  border: 0;
+  cursor: pointer;
+  font-family: inherit;
+  transition: opacity var(--transition);
+}
+
+.avatar--button:hover {
+  opacity: 0.9;
+}
+
+/* ===== Keyboard focus ===== */
+.sidebar__link:focus-visible,
+.topbar__menu-button:focus-visible,
+.icon-button:focus-visible,
+.avatar--button:focus-visible {
+  outline: 2px solid var(--color-primary);
+  outline-offset: 2px;
+}
+
+.search:focus-within {
+  outline: 2px solid var(--color-primary);
+}
+
+.topbar__accent {
+  color: var(--color-primary-dark);
+}
+
+/* Expand Topbar Search When Title Is Empty */
+.topbar:has(.topbar__title:empty) .topbar__heading {
+  display: none;
+}
+
+.topbar:has(.topbar__title:empty) .topbar__actions {
+  flex: 1;
+  width: 100%;
+  justify-content: flex-end;
+}
+
+/* ===== Desktop (900px and wider) ===== */
+@media (min-width: 900px) {
+  .layout {
+    display: flex;
+  }
+
+  .layout__main {
+    flex: 1;
+  }
+
+  .layout__overlay,
+  .topbar__menu-button {
+    display: none;
+  }
+
+  .sidebar {
+    position: sticky;
+    bottom: auto;
+    flex-shrink: 0;
+    height: 100vh;
+    max-width: none;
+    transform: none;
+    visibility: visible;
+  }
+
+  .topbar {
+    padding: var(--space-lg) var(--space-lg) var(--space-md);
+  }
+
+  .topbar__title {
+    font-size: var(--font-size-lg);
+  }
+
+  .search {
+    display: flex;
+  }
+
+  .topbar:has(.topbar__title:empty) .topbar__actions {
+    justify-content: flex-end;
+  }
+
+  .topbar:has(.topbar__title:empty) .search {
+    margin-right: auto;
+    width: 100%;
+    max-width: 580px;
+    height: 2.75rem;
+    border-radius: var(--radius-md);
+    background: var(--color-bg);
+  }
+
+  .layout__content {
+    padding: 0 var(--space-lg) var(--space-lg);
+  }
+}
+
+@media (max-width: 899px) {
+  body:has(.layout.is-menu-open) {
+    overflow: hidden;
+  }
+}

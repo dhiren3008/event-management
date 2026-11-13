@@ -1,0 +1,314 @@
+/* ===== Admin › Event Details (screenshot: "Event Details" screen) ===== */
+
+/* Shared with the Event List page (css/admin/events.css defines it there;
+   each page ships its own sheet, so it is repeated here). */
+.page-heading {
+    color: var(--color-heading);
+    font-size: 2.1rem;
+    font-weight: 500;
+    line-height: 1.2;
+    margin-bottom: var(--space-lg);
+}
+
+.event-details {
+    display: flex;
+    flex-direction: column;
+}
+
+/* ===== Header row: heading + back link ===== */
+
+.event-details__top {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: space-between;
+    gap: var(--space-md);
+    margin-bottom: var(--space-lg);
+}
+
+.event-details__top .page-heading {
+    margin-bottom: 0;
+}
+
+/* ===== Not found (no ?id=, unknown id, or a failed load) ===== */
+
+.event-details__missing {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: var(--space-md);
+    padding: var(--space-xl);
+    background: var(--color-bg);
+    border-radius: var(--radius-lg);
+    box-shadow: var(--shadow-card);
+    text-align: center;
+}
+
+.event-details__missing-text {
+    color: var(--color-text-muted);
+}
+
+/* The content wrapper is only there so one toggle hides everything; it must
+   not become a layout box, since .event-details is a flex column. */
+.event-details__view {
+    display: contents;
+}
+
+/* ===== Hero: purple panel with the white headline card ===== */
+
+.event-hero {
+    padding: 1.4rem;
+    background: var(--gradient-primary);
+    border-radius: var(--radius-lg);
+}
+
+.event-hero__card {
+    position: relative;
+    overflow: hidden;
+    padding: 1.75rem 2rem;
+    background: var(--color-bg);
+    border-radius: 16px;
+}
+
+.event-hero__info {
+    position: relative;
+    z-index: 1;
+    max-width: 40rem;
+}
+
+.event-hero__label {
+    font-size: 0.9rem;
+    font-weight: 600;
+    color: var(--color-text);
+}
+
+.event-hero__title {
+    margin: 0.15rem 0 1.1rem;
+    color: var(--color-heading);
+    font-size: 2rem;
+    font-weight: 600;
+    line-height: 1.25;
+}
+
+/* Shown next to the title only when the event is cancelled. */
+#detail-status {
+    margin: -0.6rem 0 1.1rem;
+}
+
+.event-hero__meta {
+    display: flex;
+    flex-direction: column;
+    gap: 0.55rem;
+    margin-top: 0.15rem;
+}
+
+.event-hero__meta-item {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-size: 0.95rem;
+}
+
+.event-hero__icon {
+    display: inline-flex;
+    flex-shrink: 0;
+    color: var(--color-primary);
+}
+
+.event-hero__icon svg {
+    width: 1.15rem;
+    height: 1.15rem;
+}
+
+.event-hero__icon--spaced {
+    margin-left: 0.75rem;
+}
+
+/* Decorative circles behind the text, bottom right of the card. */
+.event-hero__decor {
+    position: absolute;
+    right: 0;
+    top: 0;
+    bottom: 0;
+    width: 16rem;
+    pointer-events: none;
+}
+
+.event-hero__blob {
+    position: absolute;
+    border-radius: 50%;
+}
+
+.event-hero__blob--lg {
+    width: 8.5rem;
+    height: 8.5rem;
+    right: 1.5rem;
+    top: 50%;
+    transform: translateY(-50%);
+    background: rgba(155, 81, 198, 0.16);
+}
+
+.event-hero__blob--sm {
+    width: 4.75rem;
+    height: 4.75rem;
+    right: 7.5rem;
+    top: 50%;
+    transform: translateY(-10%);
+    background: rgba(123, 63, 196, 0.32);
+}
+
+/* ===== Description ===== */
+
+.event-details__section {
+    margin-top: var(--space-lg);
+}
+
+.event-details__heading {
+    margin-bottom: 0.75rem;
+    font-size: 1.05rem;
+    font-weight: 600;
+    color: var(--color-text);
+}
+
+.event-details__description {
+    padding: 1.2rem 1.4rem;
+    background: var(--color-input-bg);
+    border-radius: var(--radius-md);
+    font-size: 0.93rem;
+    line-height: 1.75;
+    color: var(--color-text);
+}
+
+/* ===== Ticket stats (same .stat-card the dashboard uses) ===== */
+
+.event-details__stats {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(13rem, 1fr));
+    gap: var(--space-md);
+    margin-top: var(--space-lg);
+}
+
+/* ===== Read-only field grid ===== */
+
+.event-fields {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 1.2rem 2rem;
+    margin-top: var(--space-lg);
+}
+
+.field__label {
+    margin-bottom: 0.5rem;
+    font-size: 0.9rem;
+    font-weight: 600;
+    color: var(--color-text);
+}
+
+.field__value {
+    padding: 0.85rem 1.15rem;
+    background: var(--color-input-bg);
+    border: 1px solid transparent;
+    border-radius: var(--radius-sm);
+    font-size: 0.95rem;
+    color: var(--color-text);
+}
+
+/* ===== Actions: Edit / Delete / Export ===== */
+
+.event-details__actions {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: var(--space-md);
+    margin-top: var(--space-xl);
+}
+
+.event-details__export {
+    padding: 0.8rem 2.75rem;
+}
+
+/* Danger styling for the two destructive controls (tokens only). */
+.event-details__delete {
+    color: var(--color-error);
+    border-color: var(--color-error);
+}
+
+.event-details__confirm {
+    background: var(--color-error);
+    color: var(--color-text-on-primary);
+}
+
+/* ===== Popup (self-contained — the shared modal styles come from
+       css/components.css, which this page links) ===== */
+
+.event-popup-overlay {
+    position: fixed;
+    inset: 0;
+    z-index: 200; /* sidebar sits at 100 — the overlay must clear it */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: var(--space-lg);
+    background-color: var(--color-overlay);
+}
+
+.event-popup {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: var(--space-md);
+    width: min(26rem, 100%);
+    padding: 2rem;
+    background: var(--color-bg);
+    border-radius: 24px;
+    box-shadow: 0 24px 60px rgba(31, 31, 46, 0.28);
+    text-align: center;
+}
+
+.event-popup__title {
+    color: var(--color-heading);
+    font-size: 1.5rem;
+    font-weight: 500;
+}
+
+.event-popup__text {
+    font-size: 0.95rem;
+    color: var(--color-text-muted);
+}
+
+.event-popup__ok {
+    padding: 0.7rem 2.25rem;
+}
+
+/* ===== Small screens ===== */
+
+@media (max-width: 599px) {
+    .page-heading {
+        font-size: 1.6rem;
+    }
+
+    .event-hero {
+        padding: 0.9rem;
+    }
+
+    .event-hero__card {
+        padding: 1.25rem 1.15rem;
+    }
+
+    .event-hero__title {
+        font-size: 1.5rem;
+    }
+
+    .event-hero__decor {
+        display: none;
+    }
+
+    .event-fields {
+        grid-template-columns: minmax(0, 1fr);
+        gap: 1.1rem;
+    }
+
+    .event-details__actions {
+        margin-top: var(--space-lg);
+    }
+}

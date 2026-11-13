@@ -1,0 +1,214 @@
+/* ===== Admin › Event Management (screenshots: Event List + Assign modal) ===== */
+
+.event-page__status {
+    color: var(--color-text-muted);
+    margin-bottom: var(--space-sm);
+}
+
+.event-page__top {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: flex-start;
+    justify-content: space-between;
+    gap: var(--space-md);
+    margin-bottom: var(--space-lg);
+}
+
+/* Create Event link + FAB stack, right of the page heading. */
+.event-page__actions {
+    display: flex;
+    align-items: center;
+    gap: var(--space-md);
+}
+
+/* Status tab row (All / Upcoming / Today / Past) above the table card. */
+.event-page__filters {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--space-md);
+    margin-bottom: var(--space-lg);
+}
+
+/* Wider than the users page tabs (26rem): four options instead of two. */
+.event-page__filters .tabs {
+    flex: 1 1 24rem;
+    max-width: 34rem;
+}
+
+.page-heading {
+    color: var(--color-heading);
+    font-size: 2.1rem;
+    font-weight: 500;
+    line-height: 1.2;
+}
+
+/* Generic pieces shared with other admin pages (pill, fab, modal, switch,
+   detail-list) live in css/components.css — only event-specific styles
+   stay here. */
+
+/* ===== Event table card ===== */
+
+.events-card {
+    padding: var(--space-lg) 1.75rem;
+    background: var(--color-bg);
+    border-radius: var(--radius-lg);
+    box-shadow: var(--shadow-card);
+}
+
+.events-card__scroll {
+    overflow-x: auto;
+}
+
+.events-card__empty {
+    padding: var(--space-xl) 0;
+    color: var(--color-text-muted);
+    text-align: center;
+}
+
+.events-table {
+    width: 100%;
+    min-width: 46rem;
+    border-collapse: collapse;
+}
+
+.events-table th {
+    padding: 0 0.75rem 1.25rem;
+    color: var(--color-text-muted);
+    font-size: 0.9rem;
+    font-weight: 400;
+    text-align: left;
+}
+
+.events-table td {
+    padding: 1.4rem 0.75rem;
+    font-size: 0.95rem;
+    vertical-align: middle;
+}
+
+.events-table__id {
+    font-weight: 700;
+}
+
+.events-table__name {
+    font-weight: 600;
+}
+
+/* The two action columns are centred over their buttons. */
+.events-table th:nth-child(5),
+.events-table th:nth-child(6),
+.events-table td:nth-child(5),
+.events-table td:nth-child(6) {
+    text-align: center;
+}
+
+.events-table .pill.is-disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+}
+
+/* Cancelled events stay listed (their bookings are history) but read quieter. */
+.events-table tr.is-cancelled td {
+    color: var(--color-text-muted);
+}
+
+.events-table tr.is-cancelled .events-table__name .status-badge {
+    margin-left: 0.5rem;
+}
+
+/* ===== Assign table ===== */
+
+.assign-table__scroll {
+    overflow-x: auto;
+}
+
+.assign-table {
+    width: 100%;
+    min-width: 42rem;
+    border-collapse: collapse;
+}
+
+.assign-table th {
+    padding: 0 0.6rem 0.75rem;
+    color: var(--color-text-muted);
+    font-size: 0.85rem;
+    font-weight: 500;
+    text-align: left;
+}
+
+.assign-table td {
+    padding: 1rem 0.6rem;
+    font-size: 0.95rem;
+    vertical-align: middle;
+    border-top: 1px solid var(--color-border);
+}
+
+.assign-table__check-cell {
+    width: 3rem;
+}
+
+.assign-table__id {
+    font-weight: 600;
+}
+
+.assign-table__name {
+    font-weight: 500;
+}
+
+.assign-table th:last-child,
+.assign-table td:last-child {
+    text-align: center;
+}
+
+.assign-table td:nth-child(5) {
+    text-align: center;
+}
+
+/* ===== Checkbox ===== */
+
+.check {
+    appearance: none;
+    -webkit-appearance: none;
+    position: relative;
+    width: 1.15rem;
+    height: 1.15rem;
+    margin: 0;
+    border: 2px solid var(--color-border);
+    border-radius: 5px;
+    background: var(--color-bg);
+    cursor: pointer;
+    flex-shrink: 0;
+}
+
+.check:checked {
+    background: var(--gradient-primary);
+    border-color: transparent;
+}
+
+.check:checked::after {
+    content: '';
+    position: absolute;
+    left: 4px;
+    top: 0;
+    width: 5px;
+    height: 9px;
+    border: solid var(--color-text-on-primary);
+    border-width: 0 2px 2px 0;
+    transform: rotate(45deg);
+}
+
+.check:focus-visible {
+    outline: 2px solid var(--color-primary);
+    outline-offset: 2px;
+}
+
+/* ===== Small screens ===== */
+
+@media (max-width: 599px) {
+    .page-heading {
+        font-size: 1.6rem;
+    }
+
+    .event-page__filters .tabs {
+        max-width: none;
+    }
+}

@@ -1,0 +1,204 @@
+/* ===== Member Events Page ===== */
+
+/* Expand Topbar Search When Title Is Empty */
+.topbar:has(.topbar__title:empty) .topbar__heading {
+    display: none;
+}
+
+.topbar:has(.topbar__title:empty) .topbar__actions {
+    flex: 1;
+    width: 100%;
+    justify-content: flex-end;
+}
+
+/* Page Layout */
+.member-events {
+    display: flex;
+    flex-direction: column;
+    gap: 2.25rem;
+    padding-bottom: 2rem;
+}
+
+/* Events Section (Upcoming Events & Recommended) */
+.events-section {
+    display: flex;
+    flex-direction: column;
+    gap: 1.25rem;
+}
+
+.events-section__header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.events-section__title {
+    font-size: 1.35rem;
+    font-weight: 700;
+    color: var(--color-heading);
+    margin: 0;
+}
+
+.events-section__link {
+    font-size: 0.9rem;
+    font-weight: 600;
+    color: #6f2dbd;
+    text-decoration: underline;
+    transition: opacity var(--transition);
+}
+
+.events-section__link:hover {
+    opacity: 0.8;
+}
+
+/* 4-Column Event Cards Grid */
+.events-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 1.5rem;
+}
+
+/* Individual Event Card */
+.event-card {
+    display: flex;
+    flex-direction: column;
+    background: var(--color-bg);
+    border-radius: 20px;
+    padding: 1.05rem;
+    border: 1.5px solid transparent;
+    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.04);
+    transition: transform var(--transition), box-shadow var(--transition), border-color var(--transition);
+}
+
+.event-card:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.08);
+}
+
+/* Active Card (Purple Highlighted Border) */
+.event-card--active {
+    border-color: #6f2dbd;
+    box-shadow: 0 8px 26px rgba(111, 45, 189, 0.12);
+}
+
+/* Card Image Thumbnail */
+.event-card__image-wrap {
+    width: 100%;
+    height: 145px;
+    border-radius: 14px;
+    overflow: hidden;
+    margin-bottom: 1rem;
+    flex-shrink: 0;
+    background: #f3f0fa;
+}
+
+.event-card__image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+}
+
+/* Card Body Content */
+.event-card__body {
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+}
+
+.event-card__title {
+    font-size: 1.125rem;
+    font-weight: 700;
+    color: var(--color-heading);
+    margin: 0 0 0.4rem 0;
+}
+
+.event-card__date {
+    font-size: 0.775rem;
+    font-weight: 500;
+    color: var(--color-text-muted);
+    margin: 0 0 0.65rem 0;
+}
+
+.event-card__desc {
+    font-size: 0.75rem;
+    line-height: 1.45;
+    color: var(--color-text-muted);
+    margin: 0 0 1.25rem 0;
+    display: -webkit-box;
+    -webkit-line-clamp: 4;
+    line-clamp: 4;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+}
+
+/* Card Footer (Price & Book Button) */
+.event-card__footer {
+    margin-top: auto;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 0.75rem;
+    padding-top: 0.25rem;
+}
+
+.event-card__price {
+    font-size: 1.05rem;
+    font-weight: 700;
+    color: #1e1b2e;
+}
+
+.btn-book {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0.55rem 1.2rem;
+    border-radius: 999px;
+    background: var(--gradient-primary);
+    color: #ffffff;
+    font-size: 0.8rem;
+    font-weight: 600;
+    border: none;
+    cursor: pointer;
+    white-space: nowrap;
+    font-family: inherit;
+    transition: opacity var(--transition), transform var(--transition);
+}
+
+.btn-book:hover {
+    opacity: 0.92;
+    transform: translateY(-1px);
+}
+
+/* ===== Responsive Breakpoints ===== */
+@media (max-width: 1300px) {
+    .events-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+@media (max-width: 640px) {
+    .events-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .events-section__header {
+        align-items: flex-start;
+        gap: 0.5rem;
+    }
+}
+
+@media (min-width: 900px) {
+    .topbar:has(.topbar__title:empty) .topbar__actions {
+        justify-content: flex-start;
+    }
+
+    .topbar:has(.topbar__title:empty) .search {
+        margin-right: auto;
+        width: 100%;
+        max-width: 580px;
+        height: 2.75rem;
+        border-radius: var(--radius-md);
+        background: var(--color-bg);
+    }
+}

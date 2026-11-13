@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ticket Details | Infinite Success Events</title>
+    <link rel="icon" type="image/svg+xml" href="/assets/favicon.svg">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="/css/base.css">
+    <link rel="stylesheet" href="/css/components.css">
+    <link rel="stylesheet" href="/css/layout.css">
+    <link rel="stylesheet" href="/css/verifier/ticket-details.css">
+</head>
+<body>
+    <div id="app" data-active-key="events">
+        <div class="ticket-details-page">
+            <div class="ticket-page-header">
+                <a href="/pages/verifier/dashboard.html" class="ticket-back-link" title="Back to Events">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="19" y1="12" x2="5" y2="12"/><polyline points="12 19 5 12 12 5"/></svg>
+                    <span>Back to Events</span>
+                </a>
+                <h1 class="ticket-details-page__title">Ticket Details</h1>
+            </div>
+
+            <!-- Outer White Card Surface -->
+            <div class="ticket-card-surface">
+                <!-- Inner Framed Ticket Card with Purple Outline -->
+                <div class="ticket-frame" id="ticket-frame">
+                    <!-- Top Event Cover with Ticket ID -->
+                    <div class="ticket-frame__banner" id="ticket-banner">
+                        <img class="ticket-frame__image" id="ticket-image" src="https://images.unsplash.com/photo-1540575467063-178a50c2df87?auto=format&fit=crop&w=800&q=80" alt="Ticket Event">
+                        <div class="ticket-frame__overlay">
+                            <span class="ticket-frame__badge" id="ticket-id-badge">Ticket ID: #12345</span>
+                        </div>
+                    </div>
+
+                    <!-- Ticket Details Specification -->
+                    <div class="ticket-frame__specs">
+                        <div class="ticket-spec-row">
+                            <span class="ticket-spec-label">Event Name</span>
+                            <span class="ticket-spec-separator">:</span>
+                            <span class="ticket-spec-value" id="ticket-event-name">Day in the sun!</span>
+                        </div>
+                        <div class="ticket-spec-row">
+                            <span class="ticket-spec-label">Name of Member</span>
+                            <span class="ticket-spec-separator">:</span>
+                            <span class="ticket-spec-value" id="ticket-member-name">Jack Mark</span>
+                        </div>
+                        <div class="ticket-spec-row">
+                            <span class="ticket-spec-label">Ticket Type</span>
+                            <span class="ticket-spec-separator">:</span>
+                            <span class="ticket-spec-value" id="ticket-type">Single</span>
+                        </div>
+                        <div class="ticket-spec-row">
+                            <span class="ticket-spec-label">Date & Time</span>
+                            <span class="ticket-spec-separator">:</span>
+                            <span class="ticket-spec-value" id="ticket-datetime">12<sup>th</sup> April 2022 10:00 AM</span>
+                        </div>
+                        <div class="ticket-spec-row">
+                            <span class="ticket-spec-label">Location</span>
+                            <span class="ticket-spec-separator">:</span>
+                            <span class="ticket-spec-value" id="ticket-location">Chennai</span>
+                        </div>
+                    </div>
+
+                    <!-- Multiple Tickets Navigation / Switcher (if more than 1 attendee) -->
+                    <div class="ticket-nav is-hidden" id="ticket-nav">
+                        <button type="button" class="ticket-nav__btn" id="ticket-prev-btn" title="Previous Ticket" aria-label="Previous Ticket">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="15 18 9 12 15 6"/></svg>
+                        </button>
+                        <span class="ticket-nav__info" id="ticket-nav-info">Ticket 1 of 1</span>
+                        <button type="button" class="ticket-nav__btn" id="ticket-next-btn" title="Next Ticket" aria-label="Next Ticket">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"/></svg>
+                        </button>
+                    </div>
+
+                    <!-- Action Button -->
+                    <div class="ticket-frame__action">
+                        <button type="button" class="btn-verify-ticket" id="btn-verify-ticket">Verify Ticket</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script type="module" src="/js/verifier/ticket-details.js"></script>
+</body>
+</html>

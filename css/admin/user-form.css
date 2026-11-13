@@ -1,0 +1,211 @@
+/* ===== Admin › User forms (screenshots: Member Details / Add New Member /
+   Add New Ticket Verifier / Ticket Verifier Details) ===== */
+
+/* Shared with the other admin sheets (each page ships its own file, so the
+   generic .page-heading / .field / .field-input / .btn--outline primitives
+   are repeated here — see the same note at the top of create-event.css).
+   .field__label is *not* shared with event-details.css on purpose: that
+   page defines a different block-style version of it. */
+.page-heading {
+    color: var(--color-heading);
+    font-size: 2.1rem;
+    font-weight: 500;
+    line-height: 1.2;
+    margin-bottom: var(--space-lg);
+}
+
+.user-form {
+    display: flex;
+    flex-direction: column;
+    max-width: 78rem;
+}
+
+/* ===== Card ===== */
+
+.user-form__card {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+    padding: 2rem 2.25rem;
+    background: var(--color-bg);
+    border-radius: var(--radius-lg);
+    box-shadow: var(--shadow-card);
+}
+
+/* ===== Profile photo ===== */
+
+.user-form__avatar {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.6rem;
+}
+
+.user-form__avatar-box {
+    position: relative;
+    display: grid;
+    place-items: center;
+    width: 8.75rem;
+    height: 8.75rem;
+    border-radius: 14px;
+    background: var(--color-input-bg);
+    color: var(--color-text-muted);
+}
+
+.user-form__avatar-box svg {
+    width: 3.25rem;
+    height: 3.25rem;
+}
+
+/* Pencil badge on the "Add …" screens. */
+.user-form__avatar-pencil {
+    position: absolute;
+    right: 1.75rem;
+    bottom: 1.75rem;
+    display: inline-flex;
+    color: var(--color-text-muted);
+}
+
+.user-form__avatar-pencil svg {
+    width: 1.5rem;
+    height: 1.5rem;
+}
+
+.user-form__avatar-caption {
+    font-size: 0.9rem;
+    color: var(--color-text-muted);
+}
+
+/* ===== Fields ===== */
+
+/* Tighter than the base .input so the boxes match the screenshots. Must sit
+   above the .field-input rules, which need their own right padding for the
+   chevron. */
+.user-form__card .input {
+    padding: 0.85rem 1.15rem;
+    background: var(--color-input-bg);
+    border: 1px solid transparent;
+    border-radius: var(--radius-sm);
+}
+
+.field {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-sm);
+}
+
+.field__label {
+    font-size: 0.9rem;
+    font-weight: 600;
+    color: var(--color-text);
+}
+
+/* Wrapper that parks an icon on the right edge of an input. */
+.field-input {
+    position: relative;
+    display: block;
+}
+
+.field-input .input {
+    width: 100%;
+    padding: 0.85rem 2.9rem 0.85rem 1.15rem;
+}
+
+.field-input__icon {
+    position: absolute;
+    right: 1rem;
+    top: 50%;
+    transform: translateY(-50%);
+    display: inline-flex;
+    color: var(--color-text-muted);
+    pointer-events: none;
+}
+
+.field-input__icon svg {
+    width: 1.15rem;
+    height: 1.15rem;
+}
+
+.field-input--select .input {
+    appearance: none;
+    -webkit-appearance: none;
+    padding-right: 2.9rem;
+    cursor: pointer;
+}
+
+/* ===== Two-column grid ===== */
+
+.user-form__grid {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 1.1rem 2rem;
+}
+
+/* ===== Actions ===== */
+
+.user-form__actions {
+    display: flex;
+    justify-content: center;
+    gap: var(--space-md);
+    padding-top: var(--space-sm);
+}
+
+.btn--outline {
+    padding: 0.85rem var(--space-lg);
+    background: var(--color-bg);
+    border: 1.5px solid var(--color-primary-dark);
+    color: var(--color-primary-dark);
+}
+
+.user-form__actions .btn {
+    padding: 0.85rem var(--space-lg);
+}
+
+.user-form__actions .btn:hover {
+    opacity: 0.9;
+}
+
+/* Destructive account actions (details pages only). */
+.user-form__delete {
+    color: var(--color-error);
+    border-color: var(--color-error);
+}
+
+.user-form__delete-confirm {
+    background: var(--color-error);
+    color: var(--color-text-on-primary);
+}
+
+/* ===== "Nothing was saved" popup ===== */
+
+.user-form__popup-text {
+    color: var(--color-text-muted);
+    font-size: 0.95rem;
+    white-space: pre-line;
+}
+
+.user-form__popup-ok {
+    align-self: center;
+    padding: 0.7rem 2.25rem;
+}
+
+/* ===== Small screens ===== */
+
+@media (max-width: 599px) {
+    .page-heading {
+        font-size: 1.6rem;
+    }
+
+    .user-form__card {
+        padding: var(--space-lg);
+    }
+
+    .user-form__grid {
+        grid-template-columns: minmax(0, 1fr);
+        gap: 1.1rem;
+    }
+
+    .user-form__actions {
+        flex-direction: column;
+    }
+}

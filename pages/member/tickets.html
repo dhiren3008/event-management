@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Tickets | Infinite Success Events</title>
+    <link rel="icon" type="image/svg+xml" href="/assets/favicon.svg">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="/css/base.css">
+    <link rel="stylesheet" href="/css/components.css">
+    <link rel="stylesheet" href="/css/layout.css">
+    <link rel="stylesheet" href="/css/member/tickets.css">
+</head>
+<body>
+    <div id="app">
+        <div class="tickets-page">
+            <h1 class="tickets-page__title">My Tickets</h1>
+
+            <div class="tickets-card">
+                <div class="tickets-table-wrap">
+                    <table class="tickets-table">
+                        <thead>
+                            <tr>
+                                <th>Ticket ID</th>
+                                <th>Event Name</th>
+                                <th>Status</th>
+                                <th>Date</th>
+                                <th>Ticket Type</th>
+                                <th>Amount</th>
+                                <th>Action</th>
+                            </tr>
+                        </thead>
+                        <tbody id="tickets-table-body">
+                            <tr class="ticket-row">
+                                <td colspan="7" style="text-align: center; color: var(--color-text-muted); padding: 2rem;">
+                                    Loading your tickets...
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+            <!-- Modal: Cancel Ticket Confirmation Dialog -->
+            <div class="modal-overlay is-hidden" id="cancel-ticket-overlay">
+                <div class="modal" role="dialog" aria-modal="true" aria-labelledby="cancel-ticket-title">
+                    <div class="modal__head">
+                        <h2 class="modal__title" id="cancel-ticket-title">Cancel Ticket</h2>
+                        <button type="button" class="modal__close" data-close="cancel-ticket-overlay" aria-label="Close">&times;</button>
+                    </div>
+                    <div class="modal__body">
+                        <p class="modal__text" id="cancel-ticket-message">Are you sure you want to cancel this booking? This will release your seats and cannot be undone.</p>
+                        <div class="modal__actions">
+                            <button type="button" class="btn btn--outline" data-close="cancel-ticket-overlay">Keep Ticket</button>
+                            <button type="button" class="btn btn--danger" id="btn-confirm-cancel">Yes, Cancel Ticket</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script type="module" src="/js/member/tickets.js"></script>
+</body>
+</html>

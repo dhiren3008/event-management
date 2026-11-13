@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Profile Details | Infinite Success Events</title>
+    <link rel="icon" type="image/svg+xml" href="/assets/favicon.svg">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="/css/base.css">
+    <link rel="stylesheet" href="/css/components.css">
+    <link rel="stylesheet" href="/css/layout.css">
+    <link rel="stylesheet" href="/css/admin/user-form.css">
+    <link rel="stylesheet" href="/css/admin/profile.css">
+</head>
+<body>
+    <div id="app" data-active-key="settings">
+        <div class="user-form profile-page">
+            <h1 class="page-heading">Profile Details</h1>
+
+            <form class="user-form__card" id="user-form" novalidate>
+                <div class="user-form__avatar">
+                    <span class="profile-photo">
+                        <span class="profile-photo__initials" data-profile-initials></span>
+                        <span class="profile-photo__edit">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M17 3a2.828 2.828 0 1 1 4 4L7.5 20.5 2 22l1.5-5.5L17 3z"/></svg>
+                        </span>
+                    </span>
+                    <span class="user-form__avatar-caption">Profile Photo</span>
+                </div>
+
+                <div class="user-form__grid">
+                    <div class="field">
+                        <label class="field__label" for="user-name">Full Name</label>
+                        <input class="input" id="user-name" type="text" placeholder="Enter Full Name">
+                    </div>
+
+                    <div class="field">
+                        <label class="field__label" for="member-id">Member ID</label>
+                        <input class="input" id="member-id" type="text" readonly disabled>
+                    </div>
+
+                    <div class="field">
+                        <label class="field__label" for="email">Email ID</label>
+                        <input class="input" id="email" type="email" placeholder="Enter Email ID">
+                    </div>
+
+                    <div class="field">
+                        <label class="field__label" for="phone">Phone Number</label>
+                        <input class="input" id="phone" type="tel" inputmode="numeric" minlength="10" maxlength="12" pattern="[0-9]{10,12}" placeholder="Enter Phone Number">
+                    </div>
+
+                    <div class="field">
+                        <label class="field__label" for="pin-level">PIN Level</label>
+                        <input class="input" id="pin-level" type="text" readonly disabled>
+                    </div>
+
+                    <div class="field">
+                        <label class="field__label" for="meal-preference">Meal Preference</label>
+                        <select class="input" id="meal-preference">
+                            <option value="Non-Veg">Non-Veg</option>
+                            <option value="Veg">Veg</option>
+                        </select>
+                    </div>
+
+                    <div class="field">
+                        <label class="field__label" for="spouse">Spouse Name</label>
+                        <input class="input" id="spouse" type="text" placeholder="Enter Spouse Name (optional)">
+                    </div>
+
+                    <div class="field">
+                        <label class="field__label" for="gst">GST Number</label>
+                        <input class="input" id="gst" type="text" placeholder="Enter GST Number (optional)">
+                    </div>
+
+                    <div class="field">
+                        <label class="field__label" for="address">Address Line 1</label>
+                        <input class="input" id="address" type="text" placeholder="Enter Street / Flat Address">
+                    </div>
+
+                    <div class="field">
+                        <label class="field__label" for="address-2">Address Line 2</label>
+                        <input class="input" id="address-2" type="text" placeholder="Enter Landmark / Locality">
+                    </div>
+
+                    <div class="field">
+                        <label class="field__label" for="city">City</label>
+                        <input class="input" id="city" type="text" placeholder="Enter City">
+                    </div>
+
+                    <div class="field">
+                        <label class="field__label" for="state">State</label>
+                        <input class="input" id="state" type="text" placeholder="Enter State">
+                    </div>
+
+                    <div class="field">
+                        <label class="field__label" for="zip">Zip Code</label>
+                        <input class="input" id="zip" type="text" placeholder="Enter Zip Code">
+                    </div>
+
+                    <div class="field">
+                        <label class="field__label" for="password">Change Password</label>
+                        <input class="input" id="password" type="password" placeholder="Leave blank to keep current password">
+                    </div>
+                </div>
+
+                <p class="form-message is-hidden" id="profile-message"></p>
+
+                <div class="user-form__actions">
+                    <button class="btn btn--outline" type="button" data-cancel>Cancel</button>
+                    <button class="btn btn--primary" type="button" data-save id="btn-save-profile">Save Updates</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- ===== Dialog: save confirmation ===== -->
+    <div class="modal-overlay is-hidden" id="save-overlay">
+        <div class="modal" role="dialog" aria-modal="true" aria-labelledby="save-popup-title">
+            <div class="modal__head">
+                <h2 class="modal__title" id="save-popup-title">Profile Details</h2>
+                <button class="modal__close" type="button" data-close="save-overlay" aria-label="Close">&times;</button>
+            </div>
+            <div class="modal__body">
+                <p class="user-form__popup-text">Profile successfully updated!</p>
+                <button class="btn btn--primary user-form__popup-ok" type="button" data-close="save-overlay">Got it</button>
+            </div>
+        </div>
+    </div>
+
+    <script type="module" src="/js/member/profile.js"></script>
+</body>
+</html>

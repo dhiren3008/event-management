@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Billing | Infinite Success Events</title>
+    <link rel="icon" type="image/svg+xml" href="/assets/favicon.svg">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="/css/base.css">
+    <link rel="stylesheet" href="/css/components.css">
+    <link rel="stylesheet" href="/css/layout.css">
+    <link rel="stylesheet" href="/css/member/billing.css">
+</head>
+<body>
+    <div id="app">
+        <div class="billing-page">
+            <h1 class="billing-page__title">Billing</h1>
+
+            <div class="billing-card">
+                <div class="billing-table-wrap">
+                    <table class="billing-table">
+                        <thead>
+                            <tr>
+                                <th>Bill ID</th>
+                                <th>Event Name</th>
+                                <th>Date</th>
+                                <th>Ticket Type</th>
+                                <th>Amount</th>
+                                <th>Status</th>
+                                <th>Invoice</th>
+                            </tr>
+                        </thead>
+                        <tbody id="billing-table-body">
+                            <!-- Populated dynamically by billing.js -->
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+        <!-- Invoice Modal (UI Overlay) -->
+        <div class="invoice-modal" id="invoiceModal">
+            <div class="invoice-modal__backdrop"></div>
+
+            <div class="invoice-card">
+                <!-- Header -->
+                <div class="invoice-header">
+                    <h2 class="invoice-title">Invoice <span class="invoice-number" id="inv-number">#1234</span></h2>
+                    <p class="invoice-subtitle" id="inv-event-name">UI UX Workshop</p>
+                </div>
+
+                <!-- Bill Parties & Dates -->
+                <div class="invoice-parties">
+                    <!-- Bill From -->
+                    <div class="invoice-party">
+                        <span class="party-label">Bill From:</span>
+                        <h4 class="party-name">Infinite Success Pvt. Ltd.</h4>
+                        <p class="party-address">
+                            No.1, Samandam Garden, Ground<br>
+                            Floor, Taramani Link Road, Velachery<br>
+                            Chennai – 600042, Tamil Nadu, India.
+                        </p>
+                        <div class="invoice-date-block">
+                            <span class="party-label">Issued On:</span>
+                            <strong class="date-value" id="inv-issued-on">25th March, 2023</strong>
+                        </div>
+                    </div>
+
+                    <!-- Bill To -->
+                    <div class="invoice-party">
+                        <span class="party-label">Bill to:</span>
+                        <h4 class="party-name" id="inv-user-name">Ashwin Patel</h4>
+                        <p class="party-address" id="inv-user-address">
+                            1512, Maruti Galli,Belgaum<br>
+                            Karnataka - 590002
+                        </p>
+                        <div class="invoice-date-block">
+                            <span class="party-label">Payment Status:</span>
+                            <strong class="date-value" id="inv-payment-status">Paid</strong>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Ticket Details -->
+                <div class="invoice-details">
+                    <h5 class="details-heading">Ticket Details</h5>
+                    <dl class="details-list" id="inv-details-list">
+                        <!-- Populated dynamically by billing.js -->
+                    </dl>
+                </div>
+
+                <!-- Pricing Summary -->
+                <div class="invoice-summary">
+                    <div class="summary-row">
+                        <span class="summary-label">Amount</span>
+                        <span class="summary-value" id="inv-subtotal">2000/-</span>
+                    </div>
+                    <div class="summary-row summary-row--total">
+                        <span class="summary-label">Grand Total</span>
+                        <span class="summary-value" id="inv-total">2000/-</span>
+                    </div>
+                </div>
+
+                <!-- Notice Banner (Hidden for confirmed bookings, shown for cancelled/refunded) -->
+                <div class="invoice-notice" id="inv-notice" style="display: none;">
+                    <svg class="notice-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path stroke-linecap="round" stroke-linejoin="round" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z"/>
+                    </svg>
+                    <span class="notice-text" id="inv-notice-text"></span>
+                </div>
+
+                <!-- Action Buttons -->
+                <div class="invoice-actions">
+                    <button type="button" class="btn-invoice btn-invoice--outline" id="btnInvoiceCancel">Close</button>
+                    <button type="button" class="btn-invoice btn-invoice--outline" id="btnInvoicePrint">Print</button>
+                    <button type="button" class="btn-invoice btn-invoice--primary" id="btnInvoiceSend">Send</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script type="module" src="/js/member/billing.js"></script>
+</body>
+</html>

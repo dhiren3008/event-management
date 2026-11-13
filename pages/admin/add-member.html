@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Add New Member | Infinite Success Events</title>
+    <link rel="icon" type="image/svg+xml" href="/assets/favicon.svg">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="/css/base.css">
+    <link rel="stylesheet" href="/css/components.css">
+    <link rel="stylesheet" href="/css/layout.css">
+    <link rel="stylesheet" href="/css/admin/user-form.css">
+</head>
+<body>
+    <!-- Creates a member account. js/admin/user-form.js reads the role from
+         data-role, validates, creates the record and shows the temp password. -->
+    <div id="app" data-active-key="users" data-role="member">
+        <div class="user-form">
+            <h1 class="page-heading">Add New Member</h1>
+
+            <form class="user-form__card" id="user-form" novalidate>
+                <div class="user-form__avatar">
+                    <span class="user-form__avatar-box">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+                        <span class="user-form__avatar-pencil">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M17 3a2.828 2.828 0 1 1 4 4L7.5 20.5 2 22l1.5-5.5L17 3z"/></svg>
+                        </span>
+                    </span>
+                    <span class="user-form__avatar-caption">Add Profile Photo</span>
+                </div>
+
+                <div class="user-form__grid">
+                    <div class="field">
+                        <label class="field__label" for="first-name">First Name</label>
+                        <input class="input" id="first-name" type="text" placeholder="Enter First Name">
+                    </div>
+                    <div class="field">
+                        <label class="field__label" for="last-name">Last Name</label>
+                        <input class="input" id="last-name" type="text">
+                    </div>
+
+                    <div class="field">
+                        <label class="field__label" for="member-id">Member ID</label>
+                        <input class="input" id="member-id" type="text">
+                    </div>
+                    <div class="field">
+                        <label class="field__label" for="pin-level">PIN Level</label>
+                        <span class="field-input field-input--select">
+                            <select class="input" id="pin-level">
+                                <option value="" selected disabled>Select PIN Level</option>
+                                <option>Manager</option>
+                                <option>Senior Manager</option>
+                                <option>HR</option>
+                                <option>Sales Manager</option>
+                                <option>Marketing Manager</option>
+                                <option>Accountant</option>
+                                <option>Staff</option>
+                                <option>Supervisor</option>
+                                <option>Guest</option>
+                            </select>
+                            <span class="field-input__icon">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="6 9 12 15 18 9"/></svg>
+                            </span>
+                        </span>
+                    </div>
+
+                    <div class="field">
+                        <label class="field__label" for="system-incharge">System Incharge</label>
+                        <input class="input" id="system-incharge" type="text">
+                    </div>
+                    <div class="field">
+                        <label class="field__label" for="team-name">Tab Team Name</label>
+                        <input class="input" id="team-name" type="text">
+                    </div>
+
+                    <div class="field">
+                        <label class="field__label" for="email">Email ID</label>
+                        <input class="input" id="email" type="email">
+                    </div>
+                    <div class="field">
+                        <label class="field__label" for="phone">Phone Number</label>
+                        <input class="input" id="phone" type="tel" inputmode="numeric" minlength="10" maxlength="12" pattern="[0-9]{10,12}" placeholder="Enter phone number">
+                    </div>
+                    <div class="field">
+                        <label class="field__label" for="location">Location</label>
+                        <input class="input" id="location" type="text" placeholder="Enter Location">
+                    </div>
+
+                    <div class="field">
+                        <label class="field__label" for="gst">GST</label>
+                        <input class="input" id="gst" type="text">
+                    </div>
+                    <div class="field">
+                        <label class="field__label" for="spouse">Spouse Name</label>
+                        <input class="input" id="spouse" type="text">
+                    </div>
+
+                    <div class="field">
+                        <label class="field__label" for="address">Address</label>
+                        <input class="input" id="address" type="text">
+                    </div>
+                    <div class="field">
+                        <label class="field__label" for="address-2">Address 2</label>
+                        <input class="input" id="address-2" type="text">
+                    </div>
+
+                    <div class="field">
+                        <label class="field__label" for="city">City</label>
+                        <input class="input" id="city" type="text">
+                    </div>
+                    <div class="field">
+                        <label class="field__label" for="state">State</label>
+                        <input class="input" id="state" type="text">
+                    </div>
+
+                    <div class="field">
+                        <label class="field__label" for="country">Country</label>
+                        <input class="input" id="country" type="text">
+                    </div>
+                    <div class="field">
+                        <label class="field__label" for="zip">Zip Code</label>
+                        <input class="input" id="zip" type="text">
+                    </div>
+                </div>
+
+                <p class="form-message is-hidden" id="user-form-message"></p>
+
+                <div class="user-form__actions">
+                    <button class="btn btn--outline" type="button" data-cancel>Cancel</button>
+                    <button class="btn btn--primary" type="button" data-save>Add Member</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- ===== Dialog: save confirmation (design only, saves nothing) ===== -->
+    <div class="modal-overlay is-hidden" id="save-overlay">
+        <div class="modal" role="dialog" aria-modal="true" aria-labelledby="save-popup-title">
+            <div class="modal__head">
+                <h2 class="modal__title" id="save-popup-title">Add New Member</h2>
+                <button class="modal__close" type="button" data-close="save-overlay"
+                        aria-label="Close">&times;</button>
+            </div>
+            <div class="modal__body">
+                <p class="user-form__popup-text"></p>
+                <button class="btn btn--primary user-form__popup-ok" type="button"
+                        data-close="save-overlay">Got it</button>
+            </div>
+        </div>
+    </div>
+
+    <script type="module" src="/js/admin/user-form.js"></script>
+</body>
+</html>
