@@ -383,6 +383,20 @@
       "createdAt": "2026-10-27",
       "photo": "",
       "id": 16
+    },
+    {
+      "name": "Aniket",
+      "email": "aniket2@gmail.com",
+      "mobile": "9595959595",
+      "location": "Mumbai",
+      "pinLevel": "Senior Manager",
+      "displayId": "#2333",
+      "password": "717f6u37",
+      "role": "admin",
+      "status": true,
+      "createdAt": "2026-11-13",
+      "photo": "",
+      "id": 17
     }
   ],
   "events": [
