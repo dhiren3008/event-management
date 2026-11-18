@@ -566,8 +566,8 @@
       "status": "confirmed",
       "bookedAt": "2026-11-05",
       "id": 11,
-      "verified": false,
-      "verifiedAt": null
+      "verified": true,
+      "verifiedAt": "2026-11-18"
     },
     {
       "eventId": 7,

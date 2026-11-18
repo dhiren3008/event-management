@@ -35,6 +35,7 @@ export const ROLE_MENU = {
     ],
     verifier: [
         { key: 'events', label: 'Events', icon: 'events', href: ROLE_HOME.verifier },
+        { key: 'reports', label: 'Reports', icon: 'users', href: '/pages/verifier/reports.html' },
         { key: 'settings', label: 'Settings', icon: 'settings', href: '/pages/verifier/settings.html' },
         { key: 'logout', label: 'Log out', icon: 'logout', action: 'logout' },
     ],

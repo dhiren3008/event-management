@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Reports | Infinite Success Events</title>
+    <link rel="icon" type="image/svg+xml" href="/assets/favicon.svg">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="/css/base.css">
+    <link rel="stylesheet" href="/css/components.css">
+    <link rel="stylesheet" href="/css/layout.css">
+    <link rel="stylesheet" href="/css/verifier/reports.css">
+</head>
+<body>
+    <div id="app" data-active-key="reports">
+        <div class="reports-page">
+            <!-- Header Row: Heading + Filter Button & Popover -->
+            <div class="reports-page__header">
+                <h1 class="reports-page__title">Assigned Events</h1>
+
+                <div class="reports-filter-wrap" id="reports-filter-wrap">
+                    <button
+                        type="button"
+                        class="reports-filter-btn"
+                        id="reports-filter-btn"
+                        aria-label="Filter assigned events"
+                        aria-expanded="false"
+                        aria-controls="reports-filter-menu"
+                        title="Filter &amp; Sort"
+                    >
+                        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                            <polygon points="22 3 2 3 10 12.46 10 19 14 21 14 12.46 22 3" />
+                        </svg>
+                        <span class="reports-filter-btn__dot is-hidden" id="reports-filter-dot" aria-hidden="true"></span>
+                    </button>
+
+                    <div class="reports-filter-menu is-hidden" id="reports-filter-menu" role="region" aria-label="Filter and sort options">
+                        <div class="reports-filter-menu__section">
+                            <p class="reports-filter-menu__label">Event Status</p>
+                            <div class="reports-filter-chips" id="reports-status-chips">
+                                <button type="button" class="filter-chip is-active" data-status="all">All</button>
+                                <button type="button" class="filter-chip" data-status="upcoming">Upcoming</button>
+                                <button type="button" class="filter-chip" data-status="today">Today</button>
+                                <button type="button" class="filter-chip" data-status="past">Past</button>
+                                <button type="button" class="filter-chip" data-status="cancelled">Cancelled</button>
+                            </div>
+                        </div>
+
+                        <div class="reports-filter-menu__section">
+                            <label class="reports-filter-menu__label" for="reports-sort-select">Sort By</label>
+                            <select class="input reports-filter-select" id="reports-sort-select">
+                                <option value="date-asc">Date (Earliest first)</option>
+                                <option value="date-desc">Date (Latest first)</option>
+                                <option value="members-desc">Member Count (High to Low)</option>
+                                <option value="name-asc">Event Name (A–Z)</option>
+                            </select>
+                        </div>
+
+                        <div class="reports-filter-menu__footer">
+                            <button type="button" class="reports-filter-reset" id="reports-filter-reset">Reset Filters</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- White Card Surface with Assigned Events Table -->
+            <section class="reports-card" aria-label="Assigned Events Report">
+                <div class="reports-table-wrap">
+                    <table class="reports-table">
+                        <thead>
+                            <tr>
+                                <th>Order</th>
+                                <th>Event Name</th>
+                                <th>Date</th>
+                                <th>Location</th>
+                                <th>Member Count</th>
+                                <th>Action</th>
+                            </tr>
+                        </thead>
+                        <tbody id="reports-table-body">
+                            <tr class="report-empty-row">
+                                <td colspan="6" class="report-empty-cell">Loading assigned events...</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </section>
+        </div>
+    </div>
+
+    <script type="module" src="/js/verifier/reports.js"></script>
+</body>
+</html>
