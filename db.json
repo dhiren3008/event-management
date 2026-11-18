@@ -422,13 +422,13 @@
       "image": "",
       "endDate": "2026-11-21",
       "bookingStart": "2026-10-07",
-      "bookingEnd": "2026-10-20"
+      "bookingEnd": "2026-11-20"
     },
     {
       "id": 5,
       "name": "Cloud Workshop",
       "location": "Bengaluru Convention Hall",
-      "date": "2026-11-15",
+      "date": "2026-11-22",
       "startTime": "10:00",
       "endTime": "13:00",
       "price": 600,
@@ -436,15 +436,15 @@
       "createdAt": "2026-10-10",
       "description": "A practical session on deploying and scaling applications on the cloud.",
       "image": "",
-      "endDate": "2026-11-19",
+      "endDate": "2026-11-24",
       "bookingStart": "2026-11-03",
-      "bookingEnd": "2026-11-15"
+      "bookingEnd": "2026-11-21"
     },
     {
       "id": 6,
       "name": "Music Fest Night",
       "location": "Goa Beach Arena",
-      "date": "2026-11-14",
+      "date": "2026-11-25",
       "startTime": "18:00",
       "endTime": "23:00",
       "price": 1200,
@@ -452,9 +452,9 @@
       "createdAt": "2026-10-12",
       "description": "An open-air music festival with live bands through the evening.",
       "image": "",
-      "endDate": "2026-11-14",
+      "endDate": "2026-11-25",
       "bookingStart": "2026-10-31",
-      "bookingEnd": "2026-11-13",
+      "bookingEnd": "2026-11-24",
       "status": "active",
       "cancelledAt": null
     },
@@ -588,7 +588,7 @@
       "id": 1,
       "eventId": 6,
       "userId": 3,
-      "status": false
+      "status": true
     }
   ]
 }
