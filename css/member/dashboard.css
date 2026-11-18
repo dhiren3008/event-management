@@ -354,7 +354,8 @@
     background: #ffffff;
     border: 1px solid #f0edf8;
     border-radius: 16px;
-    transition: border-color var(--transition), box-shadow var(--transition);
+    cursor: pointer;
+    transition: background var(--transition), border-color var(--transition), box-shadow var(--transition);
 }
 
 .update-item:hover {
@@ -365,8 +366,13 @@
 .update-item--active {
     background: var(--gradient-primary);
     color: #ffffff;
-    border: none;
+    border-color: transparent;
     box-shadow: 0 4px 14px rgba(111, 45, 189, 0.2);
+}
+
+.update-item--active:hover {
+    border-color: transparent;
+    box-shadow: 0 6px 18px rgba(111, 45, 189, 0.28);
 }
 
 .update-item__top {

@@ -141,23 +141,29 @@ function renderRecommended(events) {
 }
 
 // 4. Render Recent Event Updates (Right Column)
+let activeUpdateEventId = null;
+
 function renderUpdates(events) {
     const container = document.getElementById('updates-list');
     if (!container) return;
 
-    if (events.length === 0) {
+    if (!events || events.length === 0) {
         container.innerHTML = '<p style="color: var(--color-text-muted); font-size: 0.85rem;">No updates found.</p>';
         return;
     }
 
-    container.innerHTML = events.map((ev, index) => {
-        const isActive = index === 0;
+    if (activeUpdateEventId === null || !events.some((ev) => String(ev.id) === String(activeUpdateEventId))) {
+        activeUpdateEventId = events[0]?.id ?? null;
+    }
+
+    container.innerHTML = events.map((ev) => {
+        const isActive = String(ev.id) === String(activeUpdateEventId);
         const activeClass = isActive ? ' update-item--active' : '';
         const btnClass = isActive ? 'btn-detail-pill--light' : 'btn-detail-pill--primary';
         const timeString = ev.startTime ? formatTime(ev.startTime) : '10:00 AM';
 
         return `
-            <article class="update-item${activeClass}">
+            <article class="update-item${activeClass}" data-event-id="${ev.id || ''}">
                 <div class="update-item__top">
                     <h4 class="update-item__title">${ev.name}</h4>
                     <a href="/pages/member/event-details.html?id=${ev.id}" class="btn-detail-pill ${btnClass}">View Details</a>
@@ -177,6 +183,35 @@ function renderUpdates(events) {
             </article>
         `;
     }).join('');
+
+    container.querySelectorAll('.update-item').forEach((card) => {
+        card.addEventListener('click', (e) => {
+            if (e.target.closest('.btn-detail-pill')) {
+                return;
+            }
+
+            container.querySelectorAll('.update-item').forEach((item) => {
+                item.classList.remove('update-item--active');
+                const btn = item.querySelector('.btn-detail-pill');
+                if (btn) {
+                    btn.classList.remove('btn-detail-pill--light');
+                    btn.classList.add('btn-detail-pill--primary');
+                }
+            });
+
+            card.classList.add('update-item--active');
+            const activeBtn = card.querySelector('.btn-detail-pill');
+            if (activeBtn) {
+                activeBtn.classList.remove('btn-detail-pill--primary');
+                activeBtn.classList.add('btn-detail-pill--light');
+            }
+
+            const id = card.getAttribute('data-event-id');
+            if (id) {
+                activeUpdateEventId = id;
+            }
+        });
+    });
 }
 
 // ===== Initializer =====
